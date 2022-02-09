@@ -108,7 +108,8 @@ public class CustomDialog extends DialogFragment {
                 Bundle arguments = getArguments();
                 assert arguments != null;
                 long idcategory = Long.parseLong(arguments.get("idcategory").toString());
-                EditText name = view.findViewById(R.id.name2);
+                TextInputLayout textInputLayout0 = view.findViewById(R.id.name2);
+                EditText name = textInputLayout0.getEditText();
                 TextInputLayout textInputLayout = view.findViewById(R.id.content2);
                 EditText content = textInputLayout.getEditText();
                 Button btn = view.findViewById(R.id.btn2);
@@ -119,8 +120,6 @@ public class CustomDialog extends DialogFragment {
                     intent.setType("image/*");
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     resultLauncher.launch(intent);
-
-
                 });
                 btn.setOnClickListener(v -> {
                     Drawable i = imageitem.getDrawable();
