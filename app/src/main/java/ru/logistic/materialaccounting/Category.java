@@ -19,5 +19,6 @@ public class Category {
         this.name = name;
         this.id = id;
         this.image = image;
+
     }
 }
