@@ -22,6 +22,5 @@ public class CalculatorFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ((ViewGroup) view).addView(new TextView(requireContext()));
     }
 }
