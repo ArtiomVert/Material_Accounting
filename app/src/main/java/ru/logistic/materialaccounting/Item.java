@@ -16,14 +16,18 @@ public class Item {
     public String content;
 
     @ColumnInfo
+    public int count;
+
+    @ColumnInfo
     public long idcategory;
 
     @ColumnInfo
     public String image;
 
-    public Item(long id, long idcategory, String name, String content, String image) {
+    public Item(long id, long idcategory, String name, String content, int count, String image) {
         this.name = name;
         this.content = content;
+        this.count = count;
         this.id = id;
         this.idcategory = idcategory;
         this.image = image;

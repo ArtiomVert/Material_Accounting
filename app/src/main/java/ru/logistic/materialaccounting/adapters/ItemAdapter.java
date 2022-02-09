@@ -1,5 +1,6 @@
 package ru.logistic.materialaccounting.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Handler;
@@ -36,10 +37,16 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
         return new ItemAdapter.ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ItemAdapter.ViewHolder holder, int position) {
         holder.name2.setText(list.get(position).name);
-        Glide.with(ctx).load(SaveImage.loadImageFromStorage(ctx, list.get(position).image)).into(holder.image2);
+        int cnt = list.get(position).count;
+        holder.count2.setText(cnt + "");
+        Glide
+                .with(ctx)
+                .load(SaveImage.loadImageFromStorage(ctx, list.get(position).image))
+                .into(holder.image2);
         //holder.image2.setImageBitmap(SaveImage.loadImageFromStorage(ctx, list.get(position).image));
         holder.vi2.setOnClickListener(v->{
             //TODO
@@ -55,12 +62,14 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView name2;
+        TextView count2;
         ImageView image2;
         View vi2;
         ViewHolder(View view2){
             super(view2);
             vi2=view2;
             name2 = view2.findViewById(R.id.nameitem2);
+            count2 = view2.findViewById(R.id.count2);
             image2 = view2.findViewById(R.id.imagemat2);
         }
     }

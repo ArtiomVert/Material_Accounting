@@ -1,7 +1,6 @@
 package ru.logistic.materialaccounting.fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import ru.logistic.materialaccounting.CategoryDatabase;
 import ru.logistic.materialaccounting.Click;
 import ru.logistic.materialaccounting.R;
-import ru.logistic.materialaccounting.activity.AddCategory;
 import ru.logistic.materialaccounting.adapters.StorageAdapter;
 import ru.logistic.materialaccounting.database.StorageDao;
 

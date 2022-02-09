@@ -112,6 +112,8 @@ public class CustomDialog extends DialogFragment {
                 EditText name = textInputLayout0.getEditText();
                 TextInputLayout textInputLayout = view.findViewById(R.id.content2);
                 EditText content = textInputLayout.getEditText();
+                TextInputLayout textInputLayout3 = view.findViewById(R.id.count);
+                EditText count = textInputLayout3.getEditText();
                 Button btn = view.findViewById(R.id.btn2);
                 ItemsDao dao = ItemDatabase.getInstance(requireContext()).itemDao();
                 ImageView imageitem = view.findViewById(R.id.image2);
@@ -129,7 +131,12 @@ public class CustomDialog extends DialogFragment {
                     i.draw(canvas);
                     //Bitmap bitmap = ((BitmapDrawable) imageitem.getDrawable()).getBitmap();
                     String aboba = Functions.newName();
-                    Item it = new Item(0, idcategory, name.getText().toString(), content.getText().toString(), aboba);
+                    Item it = new Item(0,
+                            idcategory,
+                            name.getText().toString(),
+                            content.getText().toString(),
+                            Integer.parseInt(count.getText().toString()),
+                            aboba);
                     new Thread(() -> {
                         SaveImage.saveToInternalStorage(requireContext().getApplicationContext(), b, aboba);
                         dao.insertItem(it);
@@ -158,7 +165,9 @@ public class CustomDialog extends DialogFragment {
                     i.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
                     i.draw(canvas);
                     String aboba = Functions.newName();
-                    Category nc = new Category(0, name2.getText().toString(), aboba);
+                    Category nc = new Category(0,
+                            name2.getText().toString(),
+                            aboba);
                     new Thread(() -> {
                         SaveImage.saveToInternalStorage(requireContext().getApplicationContext(), b, aboba);
                         dao2.insertCategory(nc);
