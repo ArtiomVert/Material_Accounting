@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Material Accounting</string>
+    <string name="storage">Storage</string>
+    <string name="calc">Calculator</string>
+    <string name="storageCategory">Categories</string>
+    <string name="history">History</string>
+</resources>

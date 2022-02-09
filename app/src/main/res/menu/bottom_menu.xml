@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/storage"
+        android:icon="@drawable/ic_sklad"
+        android:title="@string/storage" />
+
+    <item
+        android:id="@+id/history"
+        android:icon="@drawable/ic_history"
+        android:title="history" />
+
+    <item
+        android:id="@+id/calc"
+        android:icon="@drawable/ic_calc"
+        android:title="calc" />
+
+</menu>
