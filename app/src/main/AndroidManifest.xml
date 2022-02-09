@@ -10,12 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialAccouting">
         <activity
-            android:name=".activity.AddItem"
-            android:exported="false" />
-        <activity
-            android:name=".activity.AddCategory"
-            android:exported="false" />
-        <activity
             android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
