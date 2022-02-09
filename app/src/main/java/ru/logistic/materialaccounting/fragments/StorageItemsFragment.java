@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import ru.logistic.materialaccounting.CustomDialog;
 import ru.logistic.materialaccounting.ItemDatabase;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.adapters.ItemAdapter;
@@ -38,7 +37,6 @@ public class StorageItemsFragment extends Fragment {
 
         Button btn = view.findViewById(R.id.add);
         btn.setOnClickListener(v -> {
-            //TODO: replace by DialogFragment inherited class call
             Bundle b = new Bundle();
             b.putLong("idcategory", id);
             new CustomDialog(R.layout.activity_add_item, b)

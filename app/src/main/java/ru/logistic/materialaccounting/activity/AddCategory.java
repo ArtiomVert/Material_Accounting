@@ -29,7 +29,6 @@ import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SaveImage;
 import ru.logistic.materialaccounting.database.StorageDao;
 
-//TODO: Replace by DialogFragment()
 public class AddCategory extends AppCompatActivity {
 
     private final ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),

@@ -6,19 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".activity.AddCategory">
 
-
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:cursorVisible="true"
-        android:ems="10"
-        android:hint="Введите название категории"
-        android:inputType="text"
-        android:minHeight="48dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image" />
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:inputType="textMultiLine"
+            android:hint="CUM"
+            android:layout_height="wrap_content"
+            tools:ignore="HardcodedText" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/btn"

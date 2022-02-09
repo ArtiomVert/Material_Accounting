@@ -37,9 +37,8 @@ public class StorageFragment extends Fragment implements Click {
         });
         Button badd = view.findViewById(R.id.add);
         badd.setOnClickListener(v -> {
-            //TODO: replace by DialogFragment inherited class call
-            Intent intent = new Intent(requireContext(), AddCategory.class);
-            startActivity(intent);
+            new CustomDialog(R.layout.activity_add_category, new Bundle())
+                    .show(requireActivity().getSupportFragmentManager(), "customTag");
         });
 
     }

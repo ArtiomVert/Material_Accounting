@@ -1,6 +1,10 @@
 package ru.logistic.materialaccounting;
 
 import android.content.Context;
+import android.icu.util.Calendar;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 public class Functions {
 
@@ -12,9 +16,23 @@ public class Functions {
         ctx.getSharedPreferences("materialaccouting", Context.MODE_PRIVATE).edit().putString(key, str).apply();
     }
 
-    public static Long newId(Context ctx) {
-        long newid= ctx.getSharedPreferences("catgame", Context.MODE_PRIVATE).getLong("id", 1)+1;
-        ctx.getSharedPreferences("catgame", Context.MODE_PRIVATE).edit().putLong("id", newid).apply();
-        return ctx.getSharedPreferences("catgame", Context.MODE_PRIVATE).getLong("id", 0);
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static String newName(){
+        Calendar c = Calendar.getInstance();
+        String aboba = "";
+        aboba += c.get(Calendar.SECOND);
+        aboba += "_";
+        aboba += c.get(Calendar.MINUTE);
+        aboba += "_";
+        aboba += c.get(Calendar.HOUR_OF_DAY);
+        aboba += "_";
+        aboba += c.get(Calendar.DAY_OF_MONTH);
+        aboba += "_";
+        aboba += c.get(Calendar.MONTH);
+        aboba += "_";
+        aboba += c.get(Calendar.YEAR);
+        aboba += ".png";
+        String finalAboba = aboba;
+        return finalAboba;
     }
 }
