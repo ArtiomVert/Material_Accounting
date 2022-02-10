@@ -1,4 +1,4 @@
-package ru.logistic.materialaccounting;
+package ru.logistic.materialaccounting.interfaces;
 
 import android.os.Bundle;
 

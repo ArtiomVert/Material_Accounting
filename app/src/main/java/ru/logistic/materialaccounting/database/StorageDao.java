@@ -2,6 +2,7 @@ package ru.logistic.materialaccounting.database;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -16,8 +17,8 @@ public interface StorageDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertCategory(Category category);
 
-    @Query("DELETE FROM categories WHERE id = :id")
-    void delete(long id);
+    @Delete
+    void delete(Category category);
 
     @Query("DELETE FROM categories")
     void deleteAllCategories();

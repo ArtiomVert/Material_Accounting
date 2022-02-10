@@ -12,22 +12,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ru.logistic.materialaccounting.Category;
-import ru.logistic.materialaccounting.Click;
+import ru.logistic.materialaccounting.CategoryDatabase;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SaveImage;
+import ru.logistic.materialaccounting.database.StorageDao;
+import ru.logistic.materialaccounting.interfaces.Click;
+import ru.logistic.materialaccounting.interfaces.ItemTouchHelperAdapter;
 
-public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHolder> {
-    private final List<Category> list;
+public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHolder> implements ItemTouchHelperAdapter {
+    public List<Category> list = new ArrayList<>();
     private Context ctx;
     private final Click clck;
 
-    public StorageAdapter(Context ctx, List<Category> notes, Click c) {
-        this.list = notes;
+    public StorageAdapter(Context ctx, Click c) {
         this.ctx = ctx;
         this.clck = c;
+    }
+
+    public void submitList(List<Category> list) {
+        this.list = list;
     }
 
     @Override
@@ -40,9 +47,7 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHold
     public void onBindViewHolder(StorageAdapter.ViewHolder holder, int position) {
 
         holder.name1.setText(list.get(position).name);
-        //TODO: RxJava3 replacement required
         Glide.with(ctx).load(SaveImage.loadImageFromStorage(ctx, list.get(position).image)).into(holder.image1);
-
 
         //holder.image1.setImageBitmap(SaveImage.loadImageFromStorage(ctx, list.get(position).image));
         holder.vi1.setOnClickListener(v -> {
@@ -55,6 +60,20 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHold
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+        StorageDao dao = CategoryDatabase.getInstance(ctx).categoryDao();
+        Category c = list.get(position);
+        new Thread(() -> dao.delete(c)).start();
+        list.remove(c);
+        notifyItemRemoved(position);
+    }
+
+    @Override
+    public void onItemMove(int fromPosition, int toPosition) {
+        notifyItemMoved(fromPosition, toPosition);
     }
 
 
@@ -70,4 +89,5 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHold
             image1 = view1.findViewById(R.id.imagemat);
         }
     }
+
 }
