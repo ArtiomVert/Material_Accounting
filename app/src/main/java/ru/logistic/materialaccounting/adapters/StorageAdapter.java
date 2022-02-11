@@ -15,8 +15,8 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.logistic.materialaccounting.Category;
-import ru.logistic.materialaccounting.CategoryDatabase;
+import ru.logistic.materialaccounting.database.Category;
+import ru.logistic.materialaccounting.database.CategoryDatabase;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SaveImage;
 import ru.logistic.materialaccounting.database.StorageDao;

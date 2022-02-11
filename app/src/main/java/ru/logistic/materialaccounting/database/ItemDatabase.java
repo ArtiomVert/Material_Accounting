@@ -1,12 +1,10 @@
-package ru.logistic.materialaccounting;
+package ru.logistic.materialaccounting.database;
 
 import android.content.Context;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-
-import ru.logistic.materialaccounting.database.ItemsDao;
 
 
 @Database(entities = Item.class, version = 1, exportSchema = false)

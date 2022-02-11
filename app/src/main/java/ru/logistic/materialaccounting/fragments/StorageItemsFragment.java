@@ -12,13 +12,11 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import ru.logistic.materialaccounting.ItemDatabase;
-import ru.logistic.materialaccounting.ItemsDiffUtil;
+import ru.logistic.materialaccounting.database.ItemDatabase;
+import ru.logistic.materialaccounting.diffutils.ItemsDiffUtil;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SimpleItemTouchHelperCallback;
-import ru.logistic.materialaccounting.StorageDiffUtil;
 import ru.logistic.materialaccounting.adapters.ItemAdapter;
-import ru.logistic.materialaccounting.adapters.StorageAdapter;
 import ru.logistic.materialaccounting.database.ItemsDao;
 
 public class StorageItemsFragment extends Fragment {
@@ -44,7 +42,7 @@ public class StorageItemsFragment extends Fragment {
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rec);
 
-        dao.getAllItems().observe(getViewLifecycleOwner(), items -> {
+        dao.getAllItemsByIdCategory(id).observe(getViewLifecycleOwner(), items -> {
             ItemsDiffUtil dif = new ItemsDiffUtil(adapter.list, items);
             DiffUtil.DiffResult d = DiffUtil.calculateDiff(dif);
             adapter.submitList(items);

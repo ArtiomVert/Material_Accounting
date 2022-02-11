@@ -1,15 +1,17 @@
-package ru.logistic.materialaccounting;
+package ru.logistic.materialaccounting.diffutils;
 
 import androidx.recyclerview.widget.DiffUtil;
 
 import java.util.List;
 
-public class ItemsDiffUtil extends DiffUtil.Callback {
+import ru.logistic.materialaccounting.database.Category;
 
-    private final List<Item> oldlist;
-    private final List<Item> newlist;
+public class StorageDiffUtil extends DiffUtil.Callback {
 
-    public ItemsDiffUtil(List<Item> oldlist, List<Item> newlist) {
+    private final List<Category> oldlist;
+    private final List<Category> newlist;
+
+    public StorageDiffUtil(List<Category> oldlist, List<Category> newlist) {
         this.oldlist = oldlist;
         this.newlist = newlist;
     }
@@ -26,15 +28,15 @@ public class ItemsDiffUtil extends DiffUtil.Callback {
 
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-        Item olditem = oldlist.get(oldItemPosition);
-        Item newitem = newlist.get(newItemPosition);
+        Category olditem = oldlist.get(oldItemPosition);
+        Category newitem = newlist.get(newItemPosition);
         return olditem.id == newitem.id;
     }
 
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-        Item olditem = oldlist.get(oldItemPosition);
-        Item newitem = newlist.get(newItemPosition);
+        Category olditem = oldlist.get(oldItemPosition);
+        Category newitem = newlist.get(newItemPosition);
         return (olditem.name.equals(newitem.name)) && (newitem.image.equals(olditem.name))
                 && olditem.id == newitem.id;
     }

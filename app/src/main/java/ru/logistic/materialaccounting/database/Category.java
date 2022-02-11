@@ -1,4 +1,4 @@
-package ru.logistic.materialaccounting;
+package ru.logistic.materialaccounting.database;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;

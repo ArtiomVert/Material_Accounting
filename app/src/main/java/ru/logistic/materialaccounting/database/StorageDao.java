@@ -9,8 +9,6 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import ru.logistic.materialaccounting.Category;
-
 
 @Dao
 public interface StorageDao {

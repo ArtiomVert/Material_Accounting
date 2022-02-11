@@ -2,16 +2,12 @@ package ru.logistic.materialaccounting.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,14 +15,11 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
-import ru.logistic.materialaccounting.Category;
-import ru.logistic.materialaccounting.CategoryDatabase;
-import ru.logistic.materialaccounting.Item;
-import ru.logistic.materialaccounting.ItemDatabase;
+import ru.logistic.materialaccounting.database.Item;
+import ru.logistic.materialaccounting.database.ItemDatabase;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SaveImage;
 import ru.logistic.materialaccounting.database.ItemsDao;
-import ru.logistic.materialaccounting.database.StorageDao;
 import ru.logistic.materialaccounting.interfaces.ItemTouchHelperAdapter;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> implements ItemTouchHelperAdapter {

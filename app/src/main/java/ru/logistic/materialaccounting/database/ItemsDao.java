@@ -9,9 +9,6 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import ru.logistic.materialaccounting.Category;
-import ru.logistic.materialaccounting.Item;
-
 @Dao
 public interface ItemsDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)

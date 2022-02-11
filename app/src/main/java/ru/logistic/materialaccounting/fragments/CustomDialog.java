@@ -7,7 +7,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -26,17 +25,16 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.DialogFragment;
 
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import ru.logistic.materialaccounting.Category;
-import ru.logistic.materialaccounting.CategoryDatabase;
+import ru.logistic.materialaccounting.database.Category;
+import ru.logistic.materialaccounting.database.CategoryDatabase;
 import ru.logistic.materialaccounting.Functions;
-import ru.logistic.materialaccounting.Item;
-import ru.logistic.materialaccounting.ItemDatabase;
+import ru.logistic.materialaccounting.database.Item;
+import ru.logistic.materialaccounting.database.ItemDatabase;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SaveImage;
 import ru.logistic.materialaccounting.database.ItemsDao;

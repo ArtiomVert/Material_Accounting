@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import ru.logistic.materialaccounting.CategoryDatabase;
+import ru.logistic.materialaccounting.database.CategoryDatabase;
 import ru.logistic.materialaccounting.SimpleItemTouchHelperCallback;
-import ru.logistic.materialaccounting.StorageDiffUtil;
+import ru.logistic.materialaccounting.diffutils.StorageDiffUtil;
 import ru.logistic.materialaccounting.interfaces.Click;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.adapters.StorageAdapter;
