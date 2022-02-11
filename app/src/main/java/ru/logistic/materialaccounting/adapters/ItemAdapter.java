@@ -11,24 +11,49 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import ru.logistic.materialaccounting.Category;
+import ru.logistic.materialaccounting.CategoryDatabase;
 import ru.logistic.materialaccounting.Item;
+import ru.logistic.materialaccounting.ItemDatabase;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SaveImage;
+import ru.logistic.materialaccounting.database.ItemsDao;
+import ru.logistic.materialaccounting.database.StorageDao;
+import ru.logistic.materialaccounting.interfaces.ItemTouchHelperAdapter;
 
-public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder>{
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> implements ItemTouchHelperAdapter {
 
-    private final List<Item> list;
+    public List<Item> list = new ArrayList<>();
     private final Context ctx ;
 
-    public ItemAdapter(Context ctx, List<Item> items){
-        this.list = items;
+    public ItemAdapter(Context ctx){
         this.ctx = ctx;
+    }
+
+    public void submitList(List<Item> list) {
+        this.list = list;
+    }
+
+    @Override
+    public void onItemDismiss(int position) {
+        ItemsDao dao = ItemDatabase.getInstance(ctx).itemDao();
+        Item c = list.get(position);
+        new Thread(() -> dao.delete(c)).start();
+        list.remove(c);
+        notifyItemRemoved(position);
+    }
+
+    @Override
+    public void onItemMove(int fromPosition, int toPosition) {
+        notifyItemMoved(fromPosition, toPosition);
     }
 
     @Override

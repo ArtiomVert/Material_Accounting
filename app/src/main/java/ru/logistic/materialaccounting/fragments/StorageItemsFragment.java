@@ -8,11 +8,17 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
 import ru.logistic.materialaccounting.ItemDatabase;
+import ru.logistic.materialaccounting.ItemsDiffUtil;
 import ru.logistic.materialaccounting.R;
+import ru.logistic.materialaccounting.SimpleItemTouchHelperCallback;
+import ru.logistic.materialaccounting.StorageDiffUtil;
 import ru.logistic.materialaccounting.adapters.ItemAdapter;
+import ru.logistic.materialaccounting.adapters.StorageAdapter;
 import ru.logistic.materialaccounting.database.ItemsDao;
 
 public class StorageItemsFragment extends Fragment {
@@ -31,8 +37,18 @@ public class StorageItemsFragment extends Fragment {
         RecyclerView rec = view.findViewById(R.id.item_rec);
         ItemsDao dao = ItemDatabase.getInstance(requireContext()).itemDao();
 
-        dao.getAllItemsByIdCategory(id).observe(getViewLifecycleOwner(), items -> {
-            rec.setAdapter(new ItemAdapter(requireContext(), items));
+        ItemAdapter adapter = new ItemAdapter(requireContext());
+        rec.setAdapter(adapter);
+
+        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
+        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        touchHelper.attachToRecyclerView(rec);
+
+        dao.getAllItems().observe(getViewLifecycleOwner(), items -> {
+            ItemsDiffUtil dif = new ItemsDiffUtil(adapter.list, items);
+            DiffUtil.DiffResult d = DiffUtil.calculateDiff(dif);
+            adapter.submitList(items);
+            d.dispatchUpdatesTo(adapter);
         });
 
         Button btn = view.findViewById(R.id.add);
