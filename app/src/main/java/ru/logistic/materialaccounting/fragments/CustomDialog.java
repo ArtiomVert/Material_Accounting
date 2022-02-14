@@ -30,13 +30,13 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-import ru.logistic.materialaccounting.database.Category;
-import ru.logistic.materialaccounting.database.CategoryDatabase;
 import ru.logistic.materialaccounting.Functions;
-import ru.logistic.materialaccounting.database.Item;
-import ru.logistic.materialaccounting.database.ItemDatabase;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SaveImage;
+import ru.logistic.materialaccounting.database.Category;
+import ru.logistic.materialaccounting.database.CategoryDatabase;
+import ru.logistic.materialaccounting.database.Item;
+import ru.logistic.materialaccounting.database.ItemDatabase;
 import ru.logistic.materialaccounting.database.ItemsDao;
 import ru.logistic.materialaccounting.database.StorageDao;
 
@@ -57,8 +57,8 @@ public class CustomDialog extends DialogFragment {
                     }
                     Bitmap bitmap = BitmapFactory.decodeStream(stream);
                     int maxSize = Math.max(bitmap.getHeight(), bitmap.getWidth());
-                    if (maxSize<5000) {
-                        switch (layout){
+                    if (maxSize < 5000) {
+                        switch (layout) {
                             case R.layout.activity_add_category:
                                 ((ImageView) requireView().findViewById(R.id.image)).setImageBitmap(bitmap);
                                 break;
@@ -66,7 +66,7 @@ public class CustomDialog extends DialogFragment {
                                 ((ImageView) requireView().findViewById(R.id.image2)).setImageBitmap(bitmap);
                                 break;
                         }
-                    } else{
+                    } else {
                         Toast.makeText(requireContext(), "Слишком большое изображение", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -75,9 +75,8 @@ public class CustomDialog extends DialogFragment {
     public CustomDialog(@LayoutRes Integer layout, @Nullable Bundle args) {
         super(layout);
         setArguments(args);
-        this.layout=layout;
+        this.layout = layout;
     }
-
 
 
     @Override
@@ -101,7 +100,7 @@ public class CustomDialog extends DialogFragment {
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        switch (layout){
+        switch (layout) {
             case R.layout.activity_add_item:
                 Bundle arguments = getArguments();
                 assert arguments != null;
@@ -122,24 +121,31 @@ public class CustomDialog extends DialogFragment {
                     resultLauncher.launch(intent);
                 });
                 btn.setOnClickListener(v -> {
-                    Drawable i = imageitem.getDrawable();
-                    Bitmap b = Bitmap.createBitmap(i.getIntrinsicWidth(), i.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(b);
-                    i.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-                    i.draw(canvas);
-                    //Bitmap bitmap = ((BitmapDrawable) imageitem.getDrawable()).getBitmap();
-                    String aboba = Functions.newName();
-                    Item it = new Item(0,
-                            idcategory,
-                            name.getText().toString(),
-                            content.getText().toString(),
-                            Integer.parseInt(count.getText().toString()),
-                            aboba);
-                    new Thread(() -> {
-                        SaveImage.saveToInternalStorage(requireContext().getApplicationContext(), b, aboba);
-                        dao.insertItem(it);
-                    }).start();
-                    dismiss();
+                    if (count.getText().toString().equals("") || name.getText().toString().equals("") || content.getText().toString().equals("")) {
+                        Toast.makeText(requireContext(), "Заполните все поля\nдля продолжения", Toast.LENGTH_SHORT).show();
+                    } else if (count.getText().toString().length() > 8) {
+                        textInputLayout3.setErrorEnabled(true);
+                        textInputLayout3.setError("Соблюдайте меры");
+                    } else {
+                        Drawable i = imageitem.getDrawable();
+                        Bitmap b = Bitmap.createBitmap(i.getIntrinsicWidth(), i.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+                        Canvas canvas = new Canvas(b);
+                        i.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+                        i.draw(canvas);
+                        //Bitmap bitmap = ((BitmapDrawable) imageitem.getDrawable()).getBitmap();
+                        String aboba = Functions.newName();
+                        Item it = new Item(0,
+                                idcategory,
+                                name.getText().toString(),
+                                content.getText().toString(),
+                                Integer.parseInt(count.getText().toString()),
+                                aboba);
+                        new Thread(() -> {
+                            SaveImage.saveToInternalStorage(requireContext().getApplicationContext(), b, aboba);
+                            dao.insertItem(it);
+                        }).start();
+                        dismiss();
+                    }
                 });
                 break;
             case R.layout.activity_add_category:
@@ -157,20 +163,24 @@ public class CustomDialog extends DialogFragment {
                 });
 
                 btn2.setOnClickListener(v -> {
-                    Drawable i = imageitem2.getDrawable();
-                    Bitmap b = Bitmap.createBitmap(i.getIntrinsicWidth(), i.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(b);
-                    i.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-                    i.draw(canvas);
-                    String aboba = Functions.newName();
-                    Category nc = new Category(0,
-                            name2.getText().toString(),
-                            aboba);
-                    new Thread(() -> {
-                        SaveImage.saveToInternalStorage(requireContext().getApplicationContext(), b, aboba);
-                        dao2.insertCategory(nc);
-                    }).start();
-                    dismiss();
+                    if (name2.getText().toString().equals("")) {
+                        Toast.makeText(requireContext(), "Заполните для продолжения", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Drawable i = imageitem2.getDrawable();
+                        Bitmap b = Bitmap.createBitmap(i.getIntrinsicWidth(), i.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+                        Canvas canvas = new Canvas(b);
+                        i.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+                        i.draw(canvas);
+                        String aboba = Functions.newName();
+                        Category nc = new Category(0,
+                                name2.getText().toString(),
+                                aboba);
+                        new Thread(() -> {
+                            SaveImage.saveToInternalStorage(requireContext().getApplicationContext(), b, aboba);
+                            dao2.insertCategory(nc);
+                        }).start();
+                        dismiss();
+                    }
                 });
                 break;
 

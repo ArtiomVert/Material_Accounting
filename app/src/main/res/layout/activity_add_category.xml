@@ -13,7 +13,7 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:inputType="textMultiLine"
+            android:inputType="text"
             android:hint="Введите название категории"
             android:layout_height="wrap_content"
             tools:ignore="HardcodedText" />
