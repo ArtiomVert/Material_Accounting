@@ -68,6 +68,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
         //holder.image2.setImageBitmap(SaveImage.loadImageFromStorage(ctx, list.get(position).image));
         holder.vi2.setOnClickListener(v->{
             //TODO
+            ItemsDao dao = ItemDatabase.getInstance(ctx).itemDao();
+            list.get(position).count=list.get(position).count-10;
+            new Thread(()->{
+                dao.update(list.get(position));
+            }).start();
+
         });
     }
 

@@ -6,6 +6,7 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import java.util.List;
 
@@ -21,7 +22,10 @@ public interface ItemsDao {
     void deleteAllItems();
 
     @Query("SELECT * FROM items WHERE id = :id ")
-    LiveData<Item> getItem(long id);
+    Item getItem(long id);
+
+    @Update(onConflict = OnConflictStrategy.IGNORE)
+    void update(Item item);
 
     @Query("SELECT * FROM items WHERE idcategory = :idcategory")
     LiveData<List<Item>> getAllItemsByIdCategory(long idcategory);
