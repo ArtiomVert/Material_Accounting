@@ -47,28 +47,33 @@ public class CustomDialog extends DialogFragment {
     @SuppressLint("NonConstantResourceId")
     private final ActivityResultLauncher<Intent> resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
             result -> {
-                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                    Uri image = result.getData().getData();
-                    InputStream stream = null;
-                    try {
-                        stream = requireContext().getContentResolver().openInputStream(image);
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    }
-                    Bitmap bitmap = BitmapFactory.decodeStream(stream);
-                    int maxSize = Math.max(bitmap.getHeight(), bitmap.getWidth());
-                    if (maxSize < 5000) {
-                        switch (layout) {
-                            case R.layout.activity_add_category:
-                                ((ImageView) requireView().findViewById(R.id.image)).setImageBitmap(bitmap);
-                                break;
-                            case R.layout.activity_add_item:
-                                ((ImageView) requireView().findViewById(R.id.image2)).setImageBitmap(bitmap);
-                                break;
+                try {
+                    if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                        Uri image = result.getData().getData();
+                        InputStream stream = null;
+                        try {
+                            stream = requireContext().getContentResolver().openInputStream(image);
+                        } catch (FileNotFoundException e) {
+                            e.printStackTrace();
                         }
-                    } else {
-                        Toast.makeText(requireContext(), "Слишком большое изображение", Toast.LENGTH_SHORT).show();
+                        Bitmap bitmap = BitmapFactory.decodeStream(stream);
+                        int maxSize = Math.max(bitmap.getHeight(), bitmap.getWidth());
+                        if (maxSize < 5000) {
+                            switch (layout) {
+                                case R.layout.activity_add_category:
+                                    ((ImageView) requireView().findViewById(R.id.image)).setImageBitmap(bitmap);
+                                    break;
+                                case R.layout.activity_add_item:
+                                    ((ImageView) requireView().findViewById(R.id.image2)).setImageBitmap(bitmap);
+                                    break;
+                            }
+                        } else {
+                            Toast.makeText(requireContext(), "Слишком большое изображение", Toast.LENGTH_SHORT).show();
+                        }
                     }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    ((ImageView) requireView().findViewById(R.id.image2)).setImageResource(R.drawable.ic_baseline_broken_image_24);
                 }
             });
 

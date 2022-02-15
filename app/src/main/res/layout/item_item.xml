@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="110dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
@@ -10,7 +10,9 @@
         android:id="@+id/imagemat2"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:layout_marginStart="10dp"
         android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_broken_image_24" />
@@ -19,9 +21,10 @@
         android:id="@+id/nameitem2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/imagemat2"
         app:layout_constraintStart_toEndOf="@+id/imagemat2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/imagemat2" />
 
     <TextView
         android:id="@+id/count2"

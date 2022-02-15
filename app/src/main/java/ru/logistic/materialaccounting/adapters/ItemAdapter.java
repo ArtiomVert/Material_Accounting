@@ -2,6 +2,9 @@ package ru.logistic.materialaccounting.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,6 +64,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
         holder.name2.setText(list.get(position).name);
         int cnt = list.get(position).count;
         holder.count2.setText(cnt + "");
+
+        //ctx.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("")));
         Glide
                 .with(ctx)
                 .load(SaveImage.loadImageFromStorage(ctx, list.get(position).image))
