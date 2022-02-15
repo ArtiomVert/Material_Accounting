@@ -58,7 +58,7 @@ public class CustomDialog extends DialogFragment {
                         }
                         Bitmap bitmap = BitmapFactory.decodeStream(stream);
                         int maxSize = Math.max(bitmap.getHeight(), bitmap.getWidth());
-                        if (maxSize < 5000) {
+                        if (maxSize < 4500) {
                             switch (layout) {
                                 case R.layout.activity_add_category:
                                     ((ImageView) requireView().findViewById(R.id.image)).setImageBitmap(bitmap);
@@ -83,6 +83,7 @@ public class CustomDialog extends DialogFragment {
         this.layout = layout;
     }
 
+    public CustomDialog(){}
 
     @Override
     public void onStart() {
@@ -192,6 +193,5 @@ public class CustomDialog extends DialogFragment {
         }
 
     }
-
 
 }
