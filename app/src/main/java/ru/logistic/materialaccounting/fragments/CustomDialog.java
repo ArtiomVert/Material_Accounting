@@ -10,6 +10,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -73,7 +75,6 @@ public class CustomDialog extends DialogFragment {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    ((ImageView) requireView().findViewById(R.id.image2)).setImageResource(R.drawable.ic_baseline_broken_image_24);
                 }
             });
 
@@ -88,6 +89,7 @@ public class CustomDialog extends DialogFragment {
     @Override
     public void onStart() {
         super.onStart();
+        setRetainInstance(true);
         requireDialog().getWindow().setLayout(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
