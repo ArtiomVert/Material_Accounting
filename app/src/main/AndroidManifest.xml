@@ -10,10 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MaterialAccouting">
         <activity
+            android:name=".activity.ActivityItem"
+            android:exported="true"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name=".activity.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
