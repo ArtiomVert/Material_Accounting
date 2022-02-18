@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph2.xml"
+    app:startDestination="@id/description">
+
+    <fragment
+        android:id="@+id/description"
+        android:name="ru.logistic.materialaccounting.fragments.DescriptionFragment"
+        android:label="Description"
+        tools:layout="@layout/activity_item" />
+
+    <fragment
+        android:id="@+id/other"
+        android:name="ru.logistic.materialaccounting.fragments.OtherFragment"
+        android:label="Other"
+        tools:layout="@layout/activity_item" />
+
+</navigation>

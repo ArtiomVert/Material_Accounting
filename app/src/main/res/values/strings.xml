@@ -4,4 +4,7 @@
     <string name="calc">Calculator</string>
     <string name="storageCategory">Categories</string>
     <string name="history">History</string>
+    <string name="other">other</string>
+    <string name="description">Description</string>
+    <string name="Other">Other</string>
 </resources>
