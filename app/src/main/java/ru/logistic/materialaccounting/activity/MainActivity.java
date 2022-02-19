@@ -42,13 +42,9 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder quitDialog = new AlertDialog.Builder(
                 this);
         quitDialog.setTitle("Вы уверены, что хотите выйти?");
-
-        //TODO: Replace by finishAffinity()
-        //TODO: Add exitSystem method
         quitDialog.setPositiveButton("Да", (dialog, which) -> finish());
 
         quitDialog.setNegativeButton("Нет", (dialog, which) -> {
-            // TODO Auto-generated method stub
         });
 
         quitDialog.show();

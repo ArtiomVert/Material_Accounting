@@ -22,7 +22,7 @@ public interface ItemsDao {
     void deleteAllItems();
 
     @Query("SELECT * FROM items WHERE id = :id ")
-    Item getItem(long id);
+    LiveData<Item> getItem(long id);
 
     @Update(onConflict = OnConflictStrategy.IGNORE)
     void update(Item item);
