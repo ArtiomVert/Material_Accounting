@@ -3,8 +3,6 @@ package ru.logistic.materialaccounting.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
-import android.text.SpannableString;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.logistic.materialaccounting.activity.ActivityItem;
+import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.Item;
-import ru.logistic.materialaccounting.database.ItemDatabase;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SaveImage;
 import ru.logistic.materialaccounting.database.ItemsDao;
@@ -41,7 +39,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
 
     @Override
     public void onItemDismiss(int position) {
-        ItemsDao dao = ItemDatabase.getInstance(ctx).itemDao();
+        ItemsDao dao = DatabaseHelper.getInstance(ctx).itemDao();
         Item c = list.get(position);
         new Thread(() -> dao.delete(c)).start();
         list.remove(c);

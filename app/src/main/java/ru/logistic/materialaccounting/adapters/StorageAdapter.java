@@ -16,9 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.logistic.materialaccounting.database.Category;
-import ru.logistic.materialaccounting.database.CategoryDatabase;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SaveImage;
+import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.StorageDao;
 import ru.logistic.materialaccounting.interfaces.Click;
 import ru.logistic.materialaccounting.interfaces.ItemTouchHelperAdapter;
@@ -64,7 +64,7 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHold
 
     @Override
     public void onItemDismiss(int position) {
-        StorageDao dao = CategoryDatabase.getInstance(ctx).categoryDao();
+        StorageDao dao = DatabaseHelper.getInstance(ctx).categoryDao();
         Category c = list.get(position);
         new Thread(() -> dao.delete(c)).start();
         list.remove(c);

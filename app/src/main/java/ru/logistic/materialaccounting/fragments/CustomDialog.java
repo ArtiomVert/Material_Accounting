@@ -36,9 +36,8 @@ import ru.logistic.materialaccounting.Functions;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SaveImage;
 import ru.logistic.materialaccounting.database.Category;
-import ru.logistic.materialaccounting.database.CategoryDatabase;
+import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.Item;
-import ru.logistic.materialaccounting.database.ItemDatabase;
 import ru.logistic.materialaccounting.database.ItemsDao;
 import ru.logistic.materialaccounting.database.StorageDao;
 
@@ -119,8 +118,10 @@ public class CustomDialog extends DialogFragment {
                 EditText content = textInputLayout.getEditText();
                 TextInputLayout textInputLayout3 = view.findViewById(R.id.count);
                 EditText count = textInputLayout3.getEditText();
+                TextInputLayout textInputLayout4 = view.findViewById(R.id.link);
+                EditText link = textInputLayout4.getEditText();
                 Button btn = view.findViewById(R.id.btn2);
-                ItemsDao dao = ItemDatabase.getInstance(requireContext()).itemDao();
+                ItemsDao dao = DatabaseHelper.getInstance(requireContext()).itemDao();
                 ImageView imageitem = view.findViewById(R.id.image2);
                 imageitem.setOnClickListener(v -> {
                     Intent intent = new Intent();
@@ -129,7 +130,7 @@ public class CustomDialog extends DialogFragment {
                     resultLauncher.launch(intent);
                 });
                 btn.setOnClickListener(v -> {
-                    if (count.getText().toString().equals("") || name.getText().toString().equals("") || content.getText().toString().equals("")) {
+                    if (link.getText().toString().equals("") || count.getText().toString().equals("") || name.getText().toString().equals("") || content.getText().toString().equals("")) {
                         Toast.makeText(requireContext(), "Заполните все поля\nдля продолжения", Toast.LENGTH_SHORT).show();
                     } else if (count.getText().toString().length() > 8) {
                         textInputLayout3.setErrorEnabled(true);
@@ -147,7 +148,8 @@ public class CustomDialog extends DialogFragment {
                                 name.getText().toString(),
                                 content.getText().toString(),
                                 Integer.parseInt(count.getText().toString()),
-                                aboba);
+                                aboba,
+                                link.getText().toString());
                         new Thread(() -> {
                             SaveImage.saveToInternalStorage(requireContext().getApplicationContext(), b, aboba);
                             dao.insertItem(it);
@@ -160,7 +162,7 @@ public class CustomDialog extends DialogFragment {
                 TextInputLayout textInputLayout2 = view.findViewById(R.id.name);
                 EditText name2 = textInputLayout2.getEditText();
                 Button btn2 = view.findViewById(R.id.btn);
-                StorageDao dao2 = CategoryDatabase.getInstance(requireContext()).categoryDao();
+                StorageDao dao2 = DatabaseHelper.getInstance(requireContext()).categoryDao();
                 ImageView imageitem2 = view.findViewById(R.id.image);
 
                 imageitem2.setOnClickListener(v -> {

@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openQuitDialog() {
-        //Replace by MaterialAlertDialogBuilder
         AlertDialog.Builder quitDialog = new AlertDialog.Builder(
                 this);
         quitDialog.setTitle("Вы уверены, что хотите выйти?");

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import ru.logistic.materialaccounting.database.ItemDatabase;
+import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.diffutils.ItemsDiffUtil;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SimpleItemTouchHelperCallback;
@@ -33,7 +33,7 @@ public class StorageItemsFragment extends Fragment {
         assert bundle != null;
         long id = bundle.getLong("id");
         RecyclerView rec = view.findViewById(R.id.item_rec);
-        ItemsDao dao = ItemDatabase.getInstance(requireContext()).itemDao();
+        ItemsDao dao = DatabaseHelper.getInstance(requireContext()).itemDao();
 
         ItemAdapter adapter = new ItemAdapter(requireContext());
         rec.setAdapter(adapter);

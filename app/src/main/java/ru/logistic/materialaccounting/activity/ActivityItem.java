@@ -14,10 +14,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.Objects;
 
 import ru.logistic.materialaccounting.R;
-import ru.logistic.materialaccounting.Values;
-import ru.logistic.materialaccounting.database.Item;
-import ru.logistic.materialaccounting.database.ItemDatabase;
-import ru.logistic.materialaccounting.database.ItemsDao;
 
 public class ActivityItem extends AppCompatActivity {
 

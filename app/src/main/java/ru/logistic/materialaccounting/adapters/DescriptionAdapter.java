@@ -1,5 +1,6 @@
 package ru.logistic.materialaccounting.adapters;
 
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ public class DescriptionAdapter extends RecyclerView.Adapter<DescriptionAdapter.
     @Override
     public void onBindViewHolder(@NonNull DescriptionAdapter.ViewHolder holder, int position) {
         holder.text.setText(str[position]);
+        Linkify.addLinks(holder.text, Linkify.ALL);
     }
 
     @Override
