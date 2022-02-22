@@ -11,8 +11,8 @@ import java.util.List;
 @Dao
 public interface HistoryDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insertItem(History history);
+    void insertHistory(History history);
 
     @Query("SELECT * FROM history")
-    LiveData<List<History>> getAllItems();
+    LiveData<List<History>> getHistory();
 }

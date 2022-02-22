@@ -1,6 +1,7 @@
 package ru.logistic.materialaccounting.adapters;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -15,10 +17,13 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.logistic.materialaccounting.Functions;
+import ru.logistic.materialaccounting.ImageHelper;
 import ru.logistic.materialaccounting.database.Category;
 import ru.logistic.materialaccounting.R;
-import ru.logistic.materialaccounting.SaveImage;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
+import ru.logistic.materialaccounting.database.History;
+import ru.logistic.materialaccounting.database.HistoryDao;
 import ru.logistic.materialaccounting.database.StorageDao;
 import ru.logistic.materialaccounting.interfaces.Click;
 import ru.logistic.materialaccounting.interfaces.ItemTouchHelperAdapter;
@@ -47,9 +52,9 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHold
     public void onBindViewHolder(StorageAdapter.ViewHolder holder, int position) {
 
         holder.name1.setText(list.get(position).name);
-        Glide.with(ctx).load(SaveImage.loadImageFromStorage(ctx, list.get(position).image)).into(holder.image1);
+        Glide.with(ctx).load(ImageHelper.loadImageFromStorage(ctx, list.get(position).image)).into(holder.image1);
 
-        //holder.image1.setImageBitmap(SaveImage.loadImageFromStorage(ctx, list.get(position).image));
+        //holder.image1.setImageBitmap(ImageHelper.loadImageFromStorage(ctx, list.get(position).image));
         holder.vi1.setOnClickListener(v -> {
             Bundle bundle = new Bundle();
             bundle.putLong("id", list.get(position).id);
@@ -62,19 +67,24 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHold
         return list.size();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onItemDismiss(int position) {
         StorageDao dao = DatabaseHelper.getInstance(ctx).categoryDao();
+        HistoryDao dao2 = DatabaseHelper.getInstance(ctx).historyDao();
         Category c = list.get(position);
-        new Thread(() -> dao.delete(c)).start();
+        ImageHelper.deleteImageFromStorage(ctx, c.image);
+        History h = new History(0, Functions.Time(), ":Удаление категории:", c.name);
+        new Thread(() -> {
+            dao.delete(c);
+            dao2.insertHistory(h);
+        }).start();
+
         list.remove(c);
         notifyItemRemoved(position);
     }
 
-    @Override
-    public void onItemMove(int fromPosition, int toPosition) {
-        notifyItemMoved(fromPosition, toPosition);
-    }
+
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 
 import ru.logistic.materialaccounting.R;
-import ru.logistic.materialaccounting.SaveImage;
+import ru.logistic.materialaccounting.ImageHelper;
 import ru.logistic.materialaccounting.adapters.DescriptionAdapter;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.ItemsDao;
@@ -36,7 +36,7 @@ public class DescriptionFragment extends Fragment {
         dao.getItem(id).observe(getViewLifecycleOwner(), item -> {
             Glide
                     .with(requireContext())
-                    .load(SaveImage.loadImageFromStorage(requireContext(), item.image))
+                    .load(ImageHelper.loadImageFromStorage(requireContext(), item.image))
                     .into((ImageView) view.findViewById(R.id.im));
             RecyclerView rec = view.findViewById(R.id.description_rec);
             String text = item.content;

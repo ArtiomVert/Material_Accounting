@@ -35,4 +35,22 @@ public class Functions {
         String finalAboba = aboba;
         return finalAboba;
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static String Time(){
+        Calendar c = Calendar.getInstance();
+        String aboba = "";
+        aboba += c.get(Calendar.SECOND);
+        aboba += ":";
+        aboba += c.get(Calendar.MINUTE);
+        aboba += ":";
+        aboba += c.get(Calendar.HOUR_OF_DAY);
+        aboba += "\n";
+        aboba += c.get(Calendar.DAY_OF_MONTH);
+        aboba += ".";
+        aboba += c.get(Calendar.MONTH);
+        aboba += ".";
+        aboba += c.get(Calendar.YEAR);
+        return aboba;
+    }
 }

@@ -10,8 +10,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -34,9 +32,11 @@ import java.io.InputStream;
 
 import ru.logistic.materialaccounting.Functions;
 import ru.logistic.materialaccounting.R;
-import ru.logistic.materialaccounting.SaveImage;
+import ru.logistic.materialaccounting.ImageHelper;
 import ru.logistic.materialaccounting.database.Category;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
+import ru.logistic.materialaccounting.database.History;
+import ru.logistic.materialaccounting.database.HistoryDao;
 import ru.logistic.materialaccounting.database.Item;
 import ru.logistic.materialaccounting.database.ItemsDao;
 import ru.logistic.materialaccounting.database.StorageDao;
@@ -112,6 +112,7 @@ public class CustomDialog extends DialogFragment {
                 Bundle arguments = getArguments();
                 assert arguments != null;
                 long idcategory = Long.parseLong(arguments.get("idcategory").toString());
+
                 TextInputLayout textInputLayout0 = view.findViewById(R.id.name2);
                 EditText name = textInputLayout0.getEditText();
                 TextInputLayout textInputLayout = view.findViewById(R.id.content2);
@@ -120,8 +121,12 @@ public class CustomDialog extends DialogFragment {
                 EditText count = textInputLayout3.getEditText();
                 TextInputLayout textInputLayout4 = view.findViewById(R.id.link);
                 EditText link = textInputLayout4.getEditText();
+
                 Button btn = view.findViewById(R.id.btn2);
+
                 ItemsDao dao = DatabaseHelper.getInstance(requireContext()).itemDao();
+                HistoryDao dao2 = DatabaseHelper.getInstance(requireContext()).historyDao();
+
                 ImageView imageitem = view.findViewById(R.id.image2);
                 imageitem.setOnClickListener(v -> {
                     Intent intent = new Intent();
@@ -150,9 +155,11 @@ public class CustomDialog extends DialogFragment {
                                 Integer.parseInt(count.getText().toString()),
                                 aboba,
                                 link.getText().toString());
+                        History h = new History(0, Functions.Time(), ":Добавление элемента:", it.name);
                         new Thread(() -> {
-                            SaveImage.saveToInternalStorage(requireContext().getApplicationContext(), b, aboba);
+                            ImageHelper.saveToInternalStorage(requireContext().getApplicationContext(), b, aboba);
                             dao.insertItem(it);
+                            dao2.insertHistory(h);
                         }).start();
                         dismiss();
                     }
@@ -162,7 +169,9 @@ public class CustomDialog extends DialogFragment {
                 TextInputLayout textInputLayout2 = view.findViewById(R.id.name);
                 EditText name2 = textInputLayout2.getEditText();
                 Button btn2 = view.findViewById(R.id.btn);
-                StorageDao dao2 = DatabaseHelper.getInstance(requireContext()).categoryDao();
+                StorageDao dao3 = DatabaseHelper.getInstance(requireContext()).categoryDao();
+                HistoryDao dao4 = DatabaseHelper.getInstance(requireContext()).historyDao();
+
                 ImageView imageitem2 = view.findViewById(R.id.image);
 
                 imageitem2.setOnClickListener(v -> {
@@ -185,9 +194,11 @@ public class CustomDialog extends DialogFragment {
                         Category nc = new Category(0,
                                 name2.getText().toString(),
                                 aboba);
+                        History h = new History(0, Functions.Time(), ":Добавление категории:", nc.name);
                         new Thread(() -> {
-                            SaveImage.saveToInternalStorage(requireContext().getApplicationContext(), b, aboba);
-                            dao2.insertCategory(nc);
+                            ImageHelper.saveToInternalStorage(requireContext().getApplicationContext(), b, aboba);
+                            dao3.insertCategory(nc);
+                            dao4.insertHistory(h);
                         }).start();
                         dismiss();
                     }

@@ -12,7 +12,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 
-public final class SaveImage {
+public final class ImageHelper {
 
 
     public static String saveToInternalStorage(Context applicationContext, Bitmap bitmapImage, String name) {
@@ -45,5 +45,11 @@ public final class SaveImage {
         ContextWrapper cw = new ContextWrapper(context);
         File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
         return new File(directory, name);
+    }
+
+    public static void deleteImageFromStorage(Context context, String name){
+        ContextWrapper cw = new ContextWrapper(context);
+        File file = new File(cw.getDir("imageDir", Context.MODE_PRIVATE) + "/" + name);
+        file.delete();
     }
 }

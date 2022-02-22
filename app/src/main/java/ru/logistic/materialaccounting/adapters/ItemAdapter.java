@@ -3,12 +3,14 @@ package ru.logistic.materialaccounting.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -16,11 +18,14 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.logistic.materialaccounting.Functions;
+import ru.logistic.materialaccounting.ImageHelper;
 import ru.logistic.materialaccounting.activity.ActivityItem;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
+import ru.logistic.materialaccounting.database.History;
+import ru.logistic.materialaccounting.database.HistoryDao;
 import ru.logistic.materialaccounting.database.Item;
 import ru.logistic.materialaccounting.R;
-import ru.logistic.materialaccounting.SaveImage;
 import ru.logistic.materialaccounting.database.ItemsDao;
 import ru.logistic.materialaccounting.interfaces.ItemTouchHelperAdapter;
 
@@ -37,19 +42,21 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
         this.list = list;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onItemDismiss(int position) {
         ItemsDao dao = DatabaseHelper.getInstance(ctx).itemDao();
+        HistoryDao dao2 = DatabaseHelper.getInstance(ctx).historyDao();
         Item c = list.get(position);
-        new Thread(() -> dao.delete(c)).start();
+        History h = new History(0, Functions.Time(), ": Удаление элемента:", c.name);
+        new Thread(() ->{
+            dao.delete(c);
+            dao2.insertHistory(h);
+        } ).start();
         list.remove(c);
         notifyItemRemoved(position);
     }
 
-    @Override
-    public void onItemMove(int fromPosition, int toPosition) {
-        notifyItemMoved(fromPosition, toPosition);
-    }
 
     @Override
     public ItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -67,9 +74,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
         //ctx.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("")));
         Glide
                 .with(ctx)
-                .load(SaveImage.loadImageFromStorage(ctx, list.get(position).image))
+                .load(ImageHelper.loadImageFromStorage(ctx, list.get(position).image))
                 .into(holder.image2);
-        //holder.image2.setImageBitmap(SaveImage.loadImageFromStorage(ctx, list.get(position).image));
+        //holder.image2.setImageBitmap(ImageHelper.loadImageFromStorage(ctx, list.get(position).image));
         holder.vi2.setOnClickListener(v->{
             //TODO
             Intent intent = new Intent(ctx, ActivityItem.class);

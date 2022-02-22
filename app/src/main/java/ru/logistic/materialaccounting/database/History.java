@@ -10,7 +10,7 @@ public class History {
     public long id;
 
     @ColumnInfo
-    public String name;
+    public String time;
 
     @ColumnInfo
     public String action;
@@ -18,8 +18,8 @@ public class History {
     @ColumnInfo
     public String details;
 
-    public History(long id, String name, String action, String details) {
-        this.name = name;
+    public History(long id, String time, String action, String details) {
+        this.time = time;
         this.id = id;
         this.action = action;
         this.details = details;
