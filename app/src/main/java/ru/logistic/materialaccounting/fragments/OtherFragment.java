@@ -34,5 +34,8 @@ public class OtherFragment extends Fragment {
             Linkify.addLinks(link, Linkify.ALL);
             count.setText("Количество: " + item.count);
         });
+        count.setOnClickListener(v->{
+            new AddDeleteDialog(id).show(requireActivity().getSupportFragmentManager(), "customTag");
+        });
     }
 }
