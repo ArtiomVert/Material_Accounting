@@ -27,13 +27,16 @@ public class Item {
     @ColumnInfo
     public String link;
 
-    public Item(long id, long idcategory, String name, String content, int count, String image, String link) {
+    @ColumnInfo
+    public String stat;
+
+    public Item(long idcategory, String name, String content, int count, String image, String link) {
         this.name = name;
         this.content = content;
         this.count = count;
-        this.id = id;
         this.idcategory = idcategory;
         this.image = image;
         this.link = link;
+        this.stat = count + "";
     }
 }

@@ -148,8 +148,7 @@ public class CustomDialog extends DialogFragment {
                         i.draw(canvas);
                         //Bitmap bitmap = ((BitmapDrawable) imageitem.getDrawable()).getBitmap();
                         String aboba = Functions.newName();
-                        Item it = new Item(0,
-                                idcategory,
+                        Item it = new Item(idcategory,
                                 name.getText().toString(),
                                 content.getText().toString(),
                                 Integer.parseInt(count.getText().toString()),

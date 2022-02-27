@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Collections;
 import java.util.List;
 
 import ru.logistic.materialaccounting.R;
@@ -16,6 +17,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
     private final List<History> list;
 
     public HistoryAdapter(List<History> list) {
+        Collections.reverse(list);
         this.list=list;
     }
 

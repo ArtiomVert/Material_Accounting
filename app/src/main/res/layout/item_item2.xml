@@ -8,17 +8,18 @@
     android:layout_weight="1"
     android:clickable="true"
     android:focusable="true"
-    app:cardElevation="5dp">
+    app:cardElevation="5dp"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="#A8AFAF">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp">
+        android:layout_height="100dp">
 
         <ImageView
             android:id="@+id/imagemat2"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginStart="5dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"

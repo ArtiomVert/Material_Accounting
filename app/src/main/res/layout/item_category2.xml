@@ -4,21 +4,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
     android:clickable="true"
     android:focusable="true"
-    app:cardElevation="5dp">
+    android:layout_margin="4dp"
+    app:cardElevation="5dp"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="#A8AFAF">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp">
+        android:layout_height="100dp">
 
 
     <ImageView
         android:id="@+id/imagemat"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="5dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

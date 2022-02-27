@@ -33,7 +33,7 @@ public class AddDeleteDialog extends DialogFragment {
     public void onStart() {
         super.onStart();
         requireDialog().getWindow().setLayout(
-                ViewGroup.LayoutParams.MATCH_PARENT,
+                600,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
     }
@@ -51,8 +51,10 @@ public class AddDeleteDialog extends DialogFragment {
 
         Button add = view.findViewById(R.id.btnplus);
         Button deduct = view.findViewById(R.id.btndeduct);
+
         TextInputLayout textInputLayout = view.findViewById(R.id.count2);
         EditText editText = textInputLayout.getEditText();
+
         add.setOnClickListener(v -> {
             String number = editText.getText().toString();
             if (number.equals("")) {
@@ -66,7 +68,7 @@ public class AddDeleteDialog extends DialogFragment {
                 HistoryDao dao2 = DatabaseHelper.getInstance(requireContext()).historyDao();
                 dao.getItem(id).observe(getViewLifecycleOwner(), item -> {
                     item.count += c;
-
+                    item.stat += "//" + item.count;
                     History h = new History(0, Functions.Time(), "Изменение количества(добавление в " + item.name + ")", c + "");
                     new Thread(() -> {
                         dao.update(item);
@@ -90,6 +92,7 @@ public class AddDeleteDialog extends DialogFragment {
                 HistoryDao dao2 = DatabaseHelper.getInstance(requireContext()).historyDao();
                 dao.getItem(id).observe(getViewLifecycleOwner(), item -> {
                     item.count -= c;
+                    item.stat += "//" + item.count;
                     History h = new History(0, Functions.Time(), "Изменение количества(вычет из " + item.name + ")", c + "");
                     new Thread(() -> {
                         dao.update(item);
