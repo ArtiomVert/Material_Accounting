@@ -7,9 +7,8 @@
     android:clickable="true"
     android:focusable="true"
     android:layout_margin="4dp"
-    app:cardElevation="5dp"
-    app:cardCornerRadius="10dp"
-    app:cardBackgroundColor="#A8AFAF">
+    app:cardElevation="10dp"
+    app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
