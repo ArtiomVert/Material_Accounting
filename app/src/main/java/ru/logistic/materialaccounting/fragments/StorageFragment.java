@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import ru.logistic.materialaccounting.SimpleItemTouchHelperCallback;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
+import ru.logistic.materialaccounting.database.Item;
+import ru.logistic.materialaccounting.database.ItemsDao;
 import ru.logistic.materialaccounting.diffutils.StorageDiffUtil;
 import ru.logistic.materialaccounting.interfaces.Click;
 import ru.logistic.materialaccounting.R;
@@ -58,5 +60,19 @@ public class StorageFragment extends Fragment implements Click {
     @Override
     public void onClick(Bundle bundle) {
         Navigation.findNavController(requireView()).navigate(R.id.storage_items, bundle);
+    }
+
+    @Override
+    public void reMoveItems(long id){
+        ItemsDao dao = DatabaseHelper.getInstance(requireContext()).itemDao();
+        dao.getAllItemsByIdCategory(id).observe(getViewLifecycleOwner(), items -> {
+            for (int i = 0; i<items.size();i++){
+                Item item = items.get(i);
+                item.idcategory=1;
+                new Thread(()->{
+                    dao.update(item);
+                }).start();
+            }
+        });
     }
 }

@@ -1,9 +1,12 @@
 package ru.logistic.materialaccounting;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -51,5 +54,15 @@ public final class ImageHelper {
         ContextWrapper cw = new ContextWrapper(context);
         File file = new File(cw.getDir("imageDir", Context.MODE_PRIVATE) + "/" + name);
         file.delete();
+    }
+
+    public static Bitmap getBitmapFromXml(Context ctx, int id) {
+        @SuppressLint("UseCompatLoadingForDrawables") Drawable drawable = ctx.getResources().getDrawable(id);
+        Canvas canvas = new Canvas();
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        canvas.setBitmap(bitmap);
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        drawable.draw(canvas);
+        return bitmap;
     }
 }

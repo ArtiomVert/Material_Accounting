@@ -45,6 +45,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onItemDismiss(int position) {
+
         ItemsDao dao = DatabaseHelper.getInstance(ctx).itemDao();
         HistoryDao dao2 = DatabaseHelper.getInstance(ctx).historyDao();
         Item c = list.get(position);

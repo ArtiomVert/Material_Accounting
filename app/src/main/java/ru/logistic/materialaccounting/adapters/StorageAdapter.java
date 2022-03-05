@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,11 +20,12 @@ import java.util.List;
 
 import ru.logistic.materialaccounting.Functions;
 import ru.logistic.materialaccounting.ImageHelper;
-import ru.logistic.materialaccounting.database.Category;
 import ru.logistic.materialaccounting.R;
+import ru.logistic.materialaccounting.database.Category;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.History;
 import ru.logistic.materialaccounting.database.HistoryDao;
+import ru.logistic.materialaccounting.database.ItemsDao;
 import ru.logistic.materialaccounting.database.StorageDao;
 import ru.logistic.materialaccounting.interfaces.Click;
 import ru.logistic.materialaccounting.interfaces.ItemTouchHelperAdapter;
@@ -70,21 +72,21 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHold
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onItemDismiss(int position) {
-        StorageDao dao = DatabaseHelper.getInstance(ctx).categoryDao();
-        HistoryDao dao2 = DatabaseHelper.getInstance(ctx).historyDao();
         Category c = list.get(position);
-        ImageHelper.deleteImageFromStorage(ctx, c.image);
-        History h = new History(0, Functions.Time(), ":Удаление категории:", c.name);
-        new Thread(() -> {
-            dao.delete(c);
-            dao2.insertHistory(h);
-        }).start();
-
-        list.remove(c);
-        notifyItemRemoved(position);
+        if (c.id != 1) {
+            clck.reMoveItems(c.id);
+            StorageDao dao = DatabaseHelper.getInstance(ctx).categoryDao();
+            HistoryDao dao2 = DatabaseHelper.getInstance(ctx).historyDao();
+            ImageHelper.deleteImageFromStorage(ctx, c.image);
+            History h = new History(0, Functions.Time(), ":Удаление категории:", c.name);
+            new Thread(() -> {
+                dao.delete(c);
+                dao2.insertHistory(h);
+            }).start();
+            list.remove(c);
+            notifyItemRemoved(position);
+        }else {notifyItemChanged(0);}
     }
-
-
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
