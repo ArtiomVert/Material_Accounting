@@ -13,12 +13,12 @@ import java.util.List;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.database.History;
 
-public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder>{
+public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHolder> {
     private final List<History> list;
 
     public HistoryAdapter(List<History> list) {
         Collections.reverse(list);
-        this.list=list;
+        this.list = list;
     }
 
     @Override

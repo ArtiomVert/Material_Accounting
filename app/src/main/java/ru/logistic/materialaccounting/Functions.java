@@ -17,7 +17,7 @@ public class Functions {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static String newName(){
+    public static String newName() {
         Calendar c = Calendar.getInstance();
         String aboba = "";
         aboba += c.get(Calendar.SECOND);
@@ -37,7 +37,7 @@ public class Functions {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public static String Time(){
+    public static String Time() {
         Calendar c = Calendar.getInstance();
         String aboba = "";
         aboba += c.get(Calendar.SECOND);

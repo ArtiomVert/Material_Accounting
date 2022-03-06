@@ -37,8 +37,8 @@ public class CalculatorFragment extends Fragment {
         EditText cost1 = til4.getEditText();
         EditText cost2 = til5.getEditText();
         Button button = view.findViewById(R.id.found);
-        button.setOnClickListener(v->{
-            for (int i = 0; i<5; i++) {
+        button.setOnClickListener(v -> {
+            for (int i = 0; i < 5; i++) {
                 if (count.getText().toString().equals("")) {
                     try {
                         count.setText((Float.parseFloat(ves2.getText().toString()) / Float.parseFloat(ves1.getText().toString())) + "");

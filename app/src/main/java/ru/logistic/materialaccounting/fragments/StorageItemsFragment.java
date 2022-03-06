@@ -12,12 +12,12 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import ru.logistic.materialaccounting.database.DatabaseHelper;
-import ru.logistic.materialaccounting.diffutils.ItemsDiffUtil;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SimpleItemTouchHelperCallback;
 import ru.logistic.materialaccounting.adapters.ItemAdapter;
+import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.ItemsDao;
+import ru.logistic.materialaccounting.diffutils.ItemsDiffUtil;
 
 public class StorageItemsFragment extends Fragment {
 

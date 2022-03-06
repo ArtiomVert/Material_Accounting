@@ -31,7 +31,7 @@ public class HistoryFragment extends Fragment {
         ((ViewGroup) view).addView(new TextView(requireContext()));
         RecyclerView rec = view.findViewById(R.id.history_rec);
         HistoryDao dao = DatabaseHelper.getInstance(requireContext()).historyDao();
-        dao.getHistory().observe(getViewLifecycleOwner(), history->{
+        dao.getHistory().observe(getViewLifecycleOwner(), history -> {
             rec.setAdapter(new HistoryAdapter(history));
         });
     }

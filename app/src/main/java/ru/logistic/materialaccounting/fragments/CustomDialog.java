@@ -31,8 +31,8 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import ru.logistic.materialaccounting.Functions;
-import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.ImageHelper;
+import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.database.Category;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.History;
@@ -83,7 +83,8 @@ public class CustomDialog extends DialogFragment {
         this.layout = layout;
     }
 
-    public CustomDialog(){}
+    public CustomDialog() {
+    }
 
     @Override
     public void onStart() {

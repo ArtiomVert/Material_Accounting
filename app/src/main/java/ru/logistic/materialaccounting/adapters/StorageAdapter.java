@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
-import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -25,17 +24,16 @@ import ru.logistic.materialaccounting.database.Category;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.History;
 import ru.logistic.materialaccounting.database.HistoryDao;
-import ru.logistic.materialaccounting.database.ItemsDao;
 import ru.logistic.materialaccounting.database.StorageDao;
-import ru.logistic.materialaccounting.interfaces.Click;
 import ru.logistic.materialaccounting.interfaces.ItemTouchHelperAdapter;
+import ru.logistic.materialaccounting.interfaces.StorageActions;
 
 public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHolder> implements ItemTouchHelperAdapter {
     public List<Category> list = new ArrayList<>();
     private Context ctx;
-    private final Click clck;
+    private final StorageActions clck;
 
-    public StorageAdapter(Context ctx, Click c) {
+    public StorageAdapter(Context ctx, StorageActions c) {
         this.ctx = ctx;
         this.clck = c;
     }
@@ -85,7 +83,9 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHold
             }).start();
             list.remove(c);
             notifyItemRemoved(position);
-        }else {notifyItemChanged(0);}
+        } else {
+            notifyItemChanged(0);
+        }
     }
 
 

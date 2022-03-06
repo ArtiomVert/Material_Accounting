@@ -10,7 +10,9 @@ import androidx.room.RoomDatabase;
 public abstract class DatabaseHelper extends RoomDatabase {
 
     public abstract ItemsDao itemDao();
+
     public abstract StorageDao categoryDao();
+
     public abstract HistoryDao historyDao();
 
     private static ru.logistic.materialaccounting.database.DatabaseHelper instance;

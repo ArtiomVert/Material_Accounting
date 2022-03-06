@@ -12,17 +12,18 @@ import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
+
+import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SimpleItemTouchHelperCallback;
+import ru.logistic.materialaccounting.adapters.StorageAdapter;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.Item;
 import ru.logistic.materialaccounting.database.ItemsDao;
-import ru.logistic.materialaccounting.diffutils.StorageDiffUtil;
-import ru.logistic.materialaccounting.interfaces.Click;
-import ru.logistic.materialaccounting.R;
-import ru.logistic.materialaccounting.adapters.StorageAdapter;
 import ru.logistic.materialaccounting.database.StorageDao;
+import ru.logistic.materialaccounting.diffutils.StorageDiffUtil;
+import ru.logistic.materialaccounting.interfaces.StorageActions;
 
-public class StorageFragment extends Fragment implements Click {
+public class StorageFragment extends Fragment implements StorageActions {
 
     public StorageFragment() {
         super(R.layout.storage_fragment);
@@ -63,13 +64,13 @@ public class StorageFragment extends Fragment implements Click {
     }
 
     @Override
-    public void reMoveItems(long id){
+    public void reMoveItems(long id) {
         ItemsDao dao = DatabaseHelper.getInstance(requireContext()).itemDao();
         dao.getAllItemsByIdCategory(id).observe(getViewLifecycleOwner(), items -> {
-            for (int i = 0; i<items.size();i++){
+            for (int i = 0; i < items.size(); i++) {
                 Item item = items.get(i);
-                item.idcategory=1;
-                new Thread(()->{
+                item.idcategory = 1;
+                new Thread(() -> {
                     dao.update(item);
                 }).start();
             }

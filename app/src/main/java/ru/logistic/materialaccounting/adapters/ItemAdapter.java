@@ -20,21 +20,21 @@ import java.util.List;
 
 import ru.logistic.materialaccounting.Functions;
 import ru.logistic.materialaccounting.ImageHelper;
+import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.activity.ActivityItem;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.History;
 import ru.logistic.materialaccounting.database.HistoryDao;
 import ru.logistic.materialaccounting.database.Item;
-import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.database.ItemsDao;
 import ru.logistic.materialaccounting.interfaces.ItemTouchHelperAdapter;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> implements ItemTouchHelperAdapter {
 
     public List<Item> list = new ArrayList<>();
-    private final Context ctx ;
+    private final Context ctx;
 
-    public ItemAdapter(Context ctx){
+    public ItemAdapter(Context ctx) {
         this.ctx = ctx;
     }
 
@@ -50,10 +50,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
         HistoryDao dao2 = DatabaseHelper.getInstance(ctx).historyDao();
         Item c = list.get(position);
         History h = new History(0, Functions.Time(), ": Удаление элемента:", c.name);
-        new Thread(() ->{
+        new Thread(() -> {
             dao.delete(c);
             dao2.insertHistory(h);
-        } ).start();
+        }).start();
         list.remove(c);
         notifyItemRemoved(position);
     }
@@ -78,7 +78,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
                 .load(ImageHelper.loadImageFromStorage(ctx, list.get(position).image))
                 .into(holder.image2);
         //holder.image2.setImageBitmap(ImageHelper.loadImageFromStorage(ctx, list.get(position).image));
-        holder.vi2.setOnClickListener(v->{
+        holder.vi2.setOnClickListener(v -> {
             //TODO
             Intent intent = new Intent(ctx, ActivityItem.class);
             intent.putExtra("id", list.get(position).id);
@@ -93,15 +93,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
     }
 
 
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView name2;
         TextView count2;
         ImageView image2;
         View vi2;
-        ViewHolder(View view2){
+
+        ViewHolder(View view2) {
             super(view2);
-            vi2=view2;
+            vi2 = view2;
             name2 = view2.findViewById(R.id.nameitem2);
             count2 = view2.findViewById(R.id.count2);
             image2 = view2.findViewById(R.id.imagemat2);

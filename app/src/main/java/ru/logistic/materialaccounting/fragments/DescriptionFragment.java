@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.ImageHelper;
+import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.adapters.DescriptionAdapter;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.ItemsDao;

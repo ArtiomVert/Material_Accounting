@@ -4,12 +4,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -50,7 +48,7 @@ public final class ImageHelper {
         return new File(directory, name);
     }
 
-    public static void deleteImageFromStorage(Context context, String name){
+    public static void deleteImageFromStorage(Context context, String name) {
         ContextWrapper cw = new ContextWrapper(context);
         File file = new File(cw.getDir("imageDir", Context.MODE_PRIVATE) + "/" + name);
         file.delete();
