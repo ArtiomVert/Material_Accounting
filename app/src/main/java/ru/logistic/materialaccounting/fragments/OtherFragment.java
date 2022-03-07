@@ -73,5 +73,8 @@ public class OtherFragment extends Fragment {
         count.setOnClickListener(v -> {
             new AddDeleteDialog(id).show(requireActivity().getSupportFragmentManager(), "customTag");
         });
+        categoryView.setOnClickListener(v->{
+            new ChangeCategoryDialog(id).show(requireActivity().getSupportFragmentManager(), "customTag");
+        });
     }
 }
