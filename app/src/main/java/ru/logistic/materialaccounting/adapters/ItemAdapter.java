@@ -8,8 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -59,6 +61,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
     }
 
 
+    @NonNull
     @Override
     public ItemAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_item2, parent, false);
@@ -85,6 +88,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
             ctx.startActivity(intent);
 
         });
+        holder.pb.setVisibility(View.GONE);
     }
 
     @Override
@@ -98,13 +102,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
         TextView count2;
         ImageView image2;
         View vi2;
+        ProgressBar pb;
 
-        ViewHolder(View view2) {
-            super(view2);
-            vi2 = view2;
-            name2 = view2.findViewById(R.id.nameitem2);
-            count2 = view2.findViewById(R.id.count2);
-            image2 = view2.findViewById(R.id.imagemat2);
+        ViewHolder(View view) {
+            super(view);
+            vi2 = view;
+            name2 = view.findViewById(R.id.nameitem2);
+            count2 = view.findViewById(R.id.count2);
+            image2 = view.findViewById(R.id.imagemat2);
+            pb = view.findViewById(R.id.progressBar3);
         }
     }
 }

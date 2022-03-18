@@ -30,7 +30,10 @@ public class Item {
     @ColumnInfo
     public String stat;
 
-    public Item(long idcategory, String name, String content, int count, String image, String link) {
+    @ColumnInfo
+    public String mera;
+
+    public Item(long idcategory, String name, String content, int count, String image, String link, String mera) {
         this.name = name;
         this.content = content;
         this.count = count;
@@ -38,5 +41,6 @@ public class Item {
         this.image = image;
         this.link = link;
         this.stat = count + "";
+        this.mera = mera;
     }
 }

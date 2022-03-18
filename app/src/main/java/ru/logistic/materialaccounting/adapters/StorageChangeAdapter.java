@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -42,7 +43,7 @@ public class StorageChangeAdapter extends RecyclerView.Adapter<StorageChangeAdap
         Category cat = list.get(position);
         holder.name1.setText(cat.name);
         Glide.with(ctx).load(ImageHelper.loadImageFromStorage(ctx, cat.image)).into(holder.image1);
-
+        holder.pb.setVisibility(View.GONE);
         holder.vi1.setOnClickListener(v -> {
             c.ChooseCategory(cat.id, cat.name);
         });
@@ -57,6 +58,7 @@ public class StorageChangeAdapter extends RecyclerView.Adapter<StorageChangeAdap
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView name1;
         ImageView image1;
+        ProgressBar pb;
         View vi1;
 
         ViewHolder(View view1) {
@@ -64,6 +66,7 @@ public class StorageChangeAdapter extends RecyclerView.Adapter<StorageChangeAdap
             vi1 = view1;
             name1 = view1.findViewById(R.id.nameitem);
             image1 = view1.findViewById(R.id.imagemat);
+            pb = view1.findViewById(R.id.progressBar2);
         }
     }
 

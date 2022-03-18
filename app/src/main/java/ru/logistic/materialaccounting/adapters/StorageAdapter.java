@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.RequiresApi;
@@ -60,6 +61,7 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHold
             bundle.putLong("id", list.get(position).id);
             clck.onClick(bundle);
         });
+        holder.pb.setVisibility(View.GONE);
     }
 
     @Override
@@ -93,12 +95,14 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHold
         TextView name1;
         ImageView image1;
         View vi1;
+        ProgressBar pb;
 
-        ViewHolder(View view1) {
-            super(view1);
-            vi1 = view1;
-            name1 = view1.findViewById(R.id.nameitem);
-            image1 = view1.findViewById(R.id.imagemat);
+        ViewHolder(View view) {
+            super(view);
+            vi1 = view;
+            name1 = view.findViewById(R.id.nameitem);
+            image1 = view.findViewById(R.id.imagemat);
+            pb = view.findViewById(R.id.progressBar2);
         }
     }
 

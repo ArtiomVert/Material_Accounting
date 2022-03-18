@@ -10,11 +10,13 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -124,6 +126,7 @@ public class CustomDialog extends DialogFragment {
                 EditText link = textInputLayout4.getEditText();
 
                 Button btn = view.findViewById(R.id.btn2);
+                Button mera = view.findViewById(R.id.mera);
 
                 ItemsDao dao = DatabaseHelper.getInstance(requireContext()).itemDao();
                 HistoryDao dao2 = DatabaseHelper.getInstance(requireContext()).historyDao();
@@ -135,6 +138,10 @@ public class CustomDialog extends DialogFragment {
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     resultLauncher.launch(intent);
                 });
+                mera.setOnClickListener(v->{
+                    showPopupMenu(v);
+                });
+
                 btn.setOnClickListener(v -> {
                     if (link.getText().toString().equals("") || count.getText().toString().equals("") || name.getText().toString().equals("") || content.getText().toString().equals("")) {
                         Toast.makeText(requireContext(), "Заполните все поля\nдля продолжения", Toast.LENGTH_SHORT).show();
@@ -154,7 +161,8 @@ public class CustomDialog extends DialogFragment {
                                 content.getText().toString(),
                                 Integer.parseInt(count.getText().toString()),
                                 aboba,
-                                link.getText().toString());
+                                link.getText().toString(),
+                                mera.getText().toString());
                         History h = new History(0, Functions.Time(), ":Добавление элемента:", it.name);
                         new Thread(() -> {
                             ImageHelper.saveToInternalStorage(requireContext().getApplicationContext(), b, aboba);
@@ -207,6 +215,26 @@ public class CustomDialog extends DialogFragment {
 
         }
 
+    }
+
+    private void showPopupMenu(View v) {
+        PopupMenu popupMenu = new PopupMenu(requireContext(), v);
+        popupMenu.inflate(R.menu.popup_menu);
+
+        popupMenu
+                .setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        ((Button) v.findViewById(R.id.mera)).setText(item.getTitle());
+                        return false;
+                    }
+                });
+
+        popupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
+            @Override
+            public void onDismiss(PopupMenu menu) {}
+        });
+        popupMenu.show();
     }
 
 }

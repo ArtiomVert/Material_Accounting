@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <group android:id="@+id/menugroup1" >
+        <item
+            android:title="шт"/>
+        <item
+            android:title="упак"/>
+        <item
+            android:title="т"/>
+        <item
+            android:title="кг"/>
+        <item
+            android:title="г"/>
+        <item
+            android:title="л"/>
+        <item
+            android:title="мл"/>
+        <item
+            android:title="км^3"/>
+        <item
+            android:title="м^3"/>
+        <item
+            android:title="см^3"/>
+        <item
+            android:title="км^2"/>
+        <item
+            android:title="м^2"/>
+        <item
+            android:title="см^2"/>
+    </group>
+
+</menu>

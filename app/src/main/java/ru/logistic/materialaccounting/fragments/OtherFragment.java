@@ -37,12 +37,14 @@ public class OtherFragment extends Fragment {
         TextView link = view.findViewById(R.id.textlink);
         TextView count = view.findViewById(R.id.textcount);
         TextView categoryView = view.findViewById(R.id.textcategory);
+        TextView countchange = view.findViewById(R.id.textcountchange);
+        TextView categoryViewchange = view.findViewById(R.id.textcategorychange);
         GraphView graph = view.findViewById(R.id.graph);
 
         dao.getItem(id).observe(getViewLifecycleOwner(), item -> {
             link.setText("Ссылка на магазин: " + item.link);
             Linkify.addLinks(link, Linkify.ALL);
-            count.setText("Количество: " + item.count);
+            count.setText("Количество: " + item.count + " " + item.mera);
             dao2.getCategory(item.idcategory).observe(getViewLifecycleOwner(), category -> {
                 categoryView.setText("Категория: " + category.name);
             });
@@ -70,10 +72,10 @@ public class OtherFragment extends Fragment {
             graph.getViewport().setScalableY(true);
             graph.addSeries(series);
         });
-        count.setOnClickListener(v -> {
+        countchange.setOnClickListener(v -> {
             new AddDeleteDialog(id).show(requireActivity().getSupportFragmentManager(), "customTag");
         });
-        categoryView.setOnClickListener(v->{
+        categoryViewchange.setOnClickListener(v->{
             new ChangeCategoryDialog(id).show(requireActivity().getSupportFragmentManager(), "customTag");
         });
     }

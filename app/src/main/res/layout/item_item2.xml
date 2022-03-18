@@ -8,8 +8,8 @@
     android:layout_weight="1"
     android:clickable="true"
     android:focusable="true"
-    app:cardElevation="10dp"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,8 +22,17 @@
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_broken_image_24" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ProgressBar
+            android:id="@+id/progressBar3"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/imagemat2"
+            app:layout_constraintEnd_toEndOf="@+id/imagemat2"
+            app:layout_constraintStart_toStartOf="@+id/imagemat2"
+            app:layout_constraintTop_toTopOf="@+id/imagemat2" />
 
         <TextView
             android:id="@+id/nameitem2"

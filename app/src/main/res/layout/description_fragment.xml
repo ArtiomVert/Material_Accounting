@@ -9,11 +9,10 @@
         android:id="@+id/im"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_broken_image_24"
-        android:scaleType="centerCrop"/>
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/description_rec"
@@ -24,4 +23,25 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/im" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/changeitem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:icon="@drawable/ic_baseline_edit"
+        android:layout_marginBottom="5dp"
+        android:layout_marginEnd="5dp"/>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/im"
+        app:layout_constraintEnd_toEndOf="@+id/im"
+        app:layout_constraintStart_toStartOf="@+id/im"
+        app:layout_constraintTop_toTopOf="@+id/im" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

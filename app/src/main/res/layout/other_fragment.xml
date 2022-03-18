@@ -9,8 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="3dp"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toStartOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -19,20 +20,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        android:textSize="15dp"
+        android:layout_marginTop="3dp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textlink" />
+
+    <TextView
+        android:id="@+id/textcountchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/teal_200"
+        android:layout_marginEnd="2dp"
+        android:layout_marginTop="3dp"
+        android:text="@string/Change"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textcount" />
 
     <TextView
         android:id="@+id/textcategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="3dp"
-        android:textSize="15dp"
+        android:layout_marginTop="3dp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textcount" />
+    <TextView
+        android:id="@+id/textcategorychange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginTop="3dp"
+        android:text="@string/Change"
+        android:textSize="17sp"
+        android:textColor="@color/teal_200"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textcategory" />
 
 
     <com.jjoe64.graphview.GraphView

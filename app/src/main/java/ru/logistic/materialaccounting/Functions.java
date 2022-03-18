@@ -19,38 +19,38 @@ public class Functions {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static String newName() {
         Calendar c = Calendar.getInstance();
-        String aboba = "";
-        aboba += c.get(Calendar.SECOND);
-        aboba += "_";
-        aboba += c.get(Calendar.MINUTE);
-        aboba += "_";
-        aboba += c.get(Calendar.HOUR_OF_DAY);
-        aboba += "_";
-        aboba += c.get(Calendar.DAY_OF_MONTH);
-        aboba += "_";
-        aboba += c.get(Calendar.MONTH);
-        aboba += "_";
-        aboba += c.get(Calendar.YEAR);
-        aboba += ".png";
-        String finalAboba = aboba;
-        return finalAboba;
+        String date = "";
+        date += c.get(Calendar.SECOND);
+        date += "_";
+        date += c.get(Calendar.MINUTE);
+        date += "_";
+        date += c.get(Calendar.HOUR_OF_DAY);
+        date += "_";
+        date += c.get(Calendar.DAY_OF_MONTH);
+        date += "_";
+        date += c.get(Calendar.MONTH);
+        date += "_";
+        date += c.get(Calendar.YEAR);
+        date += ".png";
+        String finalDate = date;
+        return finalDate;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static String Time() {
         Calendar c = Calendar.getInstance();
-        String aboba = "";
-        aboba += c.get(Calendar.SECOND);
-        aboba += ":";
-        aboba += c.get(Calendar.MINUTE);
-        aboba += ":";
-        aboba += c.get(Calendar.HOUR_OF_DAY);
-        aboba += "\n";
-        aboba += c.get(Calendar.DAY_OF_MONTH);
-        aboba += ".";
-        aboba += c.get(Calendar.MONTH);
-        aboba += ".";
-        aboba += c.get(Calendar.YEAR);
-        return aboba;
+        String date = "";
+        date += c.get(Calendar.SECOND);
+        date += ":";
+        date += c.get(Calendar.MINUTE);
+        date += ":";
+        date += c.get(Calendar.HOUR_OF_DAY);
+        date += "\n";
+        date += c.get(Calendar.DAY_OF_MONTH);
+        date += ".";
+        date += c.get(Calendar.MONTH);
+        date += ".";
+        date += c.get(Calendar.YEAR);
+        return date;
     }
 }
