@@ -38,7 +38,7 @@ public class DescriptionFragment extends Fragment {
         ProgressBar pb = view.findViewById(R.id.progressBar);
         Intent intent = requireActivity().getIntent();
         long id = intent.getLongExtra("id", 0);
-        Toast.makeText(requireContext(), id + "", Toast.LENGTH_SHORT).show();
+
         ItemsDao dao = DatabaseHelper.getInstance(requireContext()).itemDao();
         dao.getItem(id).observe(getViewLifecycleOwner(), item -> {
             it =item;

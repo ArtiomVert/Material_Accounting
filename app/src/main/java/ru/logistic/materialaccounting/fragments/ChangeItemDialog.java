@@ -27,9 +27,12 @@ import com.google.android.material.textfield.TextInputLayout;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+import ru.logistic.materialaccounting.Functions;
 import ru.logistic.materialaccounting.ImageHelper;
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
+import ru.logistic.materialaccounting.database.History;
+import ru.logistic.materialaccounting.database.HistoryDao;
 import ru.logistic.materialaccounting.database.Item;
 import ru.logistic.materialaccounting.database.ItemsDao;
 
@@ -83,12 +86,15 @@ public class ChangeItemDialog extends DialogFragment {
         content.setText(item.content);
         Button save = view.findViewById(R.id.btn3);
         save.setOnClickListener(v->{
+            History h = new History(0, Functions.Time(), "Изменение описания элемента:", item.name);
             item.name = name.getText().toString();
             item.link = link.getText().toString();
             item.content = content.getText().toString();
             ItemsDao dao = DatabaseHelper.getInstance(requireContext()).itemDao();
+            HistoryDao dao2 = DatabaseHelper.getInstance(requireContext()).historyDao();
             new Thread(()->{
                 dao.update(item);
+                dao2.insertHistory(h);
             }).start();
             dismiss();
         });

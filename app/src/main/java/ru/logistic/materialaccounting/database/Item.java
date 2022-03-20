@@ -33,6 +33,9 @@ public class Item {
     @ColumnInfo
     public String mera;
 
+    @ColumnInfo
+    public int popularityusing = 0;
+
     public Item(long idcategory, String name, String content, int count, String image, String link, String mera) {
         this.name = name;
         this.content = content;

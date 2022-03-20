@@ -93,6 +93,7 @@ public class AddDeleteDialog extends DialogFragment {
                 dao.getItem(id).observe(getViewLifecycleOwner(), item -> {
                     item.count -= c;
                     item.stat += "//" + item.count;
+                    item.popularityusing+=1;
                     History h = new History(0, Functions.Time(), "Изменение количества(вычет из " + item.name + ")", c + "");
                     new Thread(() -> {
                         dao.update(item);

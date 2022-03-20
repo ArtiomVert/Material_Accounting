@@ -33,12 +33,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         navController = Navigation.findNavController(this, R.id.nav_host);
-        if (Functions.load(this, "first") == "") {
+        if (Functions.load(this, "first").equals("")) {
             StorageDao dao = DatabaseHelper.getInstance(this).categoryDao();
-            String nameImage = Functions.newName();
+            String nameImage = "category other image";
             Bitmap b = ImageHelper.getBitmapFromXml(this, R.drawable.ic_category_other);
             ImageHelper.saveToInternalStorage(this.getApplicationContext(), b, nameImage);
-            Toast.makeText(this, b + "", Toast.LENGTH_SHORT).show();
             Category other = new Category(0, "Other", nameImage);
             new Thread(() -> {
                 dao.insertCategory(other);

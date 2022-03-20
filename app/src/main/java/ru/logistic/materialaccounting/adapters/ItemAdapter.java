@@ -73,7 +73,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
     public void onBindViewHolder(ItemAdapter.ViewHolder holder, int position) {
         holder.name2.setText(list.get(position).name);
         int cnt = list.get(position).count;
-        holder.count2.setText(cnt + "");
+        String mera = list.get(position).mera;
+        holder.count2.setText(cnt + " " + mera);
 
         //ctx.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("")));
         Glide
