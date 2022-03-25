@@ -73,7 +73,8 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHold
     @Override
     public void onItemDismiss(int position) {
         Category c = list.get(position);
-        if (c.id != 1) {
+        int id = (int) c.id;
+        if (id != 1 && id!=2) {
             clck.reMoveItems(c.id);
             StorageDao dao = DatabaseHelper.getInstance(ctx).categoryDao();
             HistoryDao dao2 = DatabaseHelper.getInstance(ctx).historyDao();
@@ -86,7 +87,7 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHold
             list.remove(c);
             notifyItemRemoved(position);
         } else {
-            notifyItemChanged(0);
+            notifyItemChanged(id-1);
         }
     }
 

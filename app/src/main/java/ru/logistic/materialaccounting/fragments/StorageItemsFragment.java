@@ -4,6 +4,7 @@ package ru.logistic.materialaccounting.fragments;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +33,7 @@ public class StorageItemsFragment extends Fragment {
         Bundle bundle = getArguments();
         assert bundle != null;
         long id = bundle.getLong("id");
+        Toast.makeText(requireContext(), id+"", Toast.LENGTH_SHORT).show();
         RecyclerView rec = view.findViewById(R.id.item_rec);
         ItemsDao dao = DatabaseHelper.getInstance(requireContext()).itemDao();
 
@@ -42,13 +44,21 @@ public class StorageItemsFragment extends Fragment {
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rec);
 
-        dao.getAllItemsByIdCategory(id).observe(getViewLifecycleOwner(), items -> {
-            ItemsDiffUtil dif = new ItemsDiffUtil(adapter.list, items);
-            DiffUtil.DiffResult d = DiffUtil.calculateDiff(dif);
-            adapter.submitList(items);
-            d.dispatchUpdatesTo(adapter);
-        });
-
+        if (id==1){
+            dao.getAllItems().observe(getViewLifecycleOwner(), items -> {
+                ItemsDiffUtil dif = new ItemsDiffUtil(adapter.list, items);
+                DiffUtil.DiffResult d = DiffUtil.calculateDiff(dif);
+                adapter.submitList(items);
+                d.dispatchUpdatesTo(adapter);
+            });
+        }else {
+            dao.getAllItemsByIdCategory(id).observe(getViewLifecycleOwner(), items -> {
+                ItemsDiffUtil dif = new ItemsDiffUtil(adapter.list, items);
+                DiffUtil.DiffResult d = DiffUtil.calculateDiff(dif);
+                adapter.submitList(items);
+                d.dispatchUpdatesTo(adapter);
+            });
+        }
         Button btn = view.findViewById(R.id.add);
         btn.setOnClickListener(v -> {
             Bundle b = new Bundle();

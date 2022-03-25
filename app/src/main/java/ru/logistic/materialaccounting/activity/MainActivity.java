@@ -35,11 +35,13 @@ public class MainActivity extends AppCompatActivity {
         navController = Navigation.findNavController(this, R.id.nav_host);
         if (Functions.load(this, "first").equals("")) {
             StorageDao dao = DatabaseHelper.getInstance(this).categoryDao();
-            String nameImage = "category other image";
+            String nameImage = "category special image";
             Bitmap b = ImageHelper.getBitmapFromXml(this, R.drawable.ic_category_other);
             ImageHelper.saveToInternalStorage(this.getApplicationContext(), b, nameImage);
-            Category other = new Category(0, "Other", nameImage);
+            Category other = new Category(0, "Остальное", nameImage);
+            Category all = new Category(0, "Все элементы", nameImage);
             new Thread(() -> {
+                dao.insertCategory(all);
                 dao.insertCategory(other);
             }).start();
             Functions.save(this, "first", "1");
