@@ -2,8 +2,11 @@ package ru.logistic.materialaccounting.fragments;
 
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -13,9 +16,13 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SimpleItemTouchHelperCallback;
 import ru.logistic.materialaccounting.adapters.StorageAdapter;
+import ru.logistic.materialaccounting.database.Category;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.Item;
 import ru.logistic.materialaccounting.database.ItemsDao;
@@ -24,6 +31,12 @@ import ru.logistic.materialaccounting.diffutils.StorageDiffUtil;
 import ru.logistic.materialaccounting.interfaces.StorageActions;
 
 public class StorageFragment extends Fragment implements StorageActions {
+    private StorageAdapter adapter;
+    private StorageDao dao;
+    private RecyclerView rec;
+    private ItemTouchHelper.Callback callback;
+    private ItemTouchHelper touchHelper;
+
 
     public StorageFragment() {
         super(R.layout.storage_fragment);
@@ -33,14 +46,12 @@ public class StorageFragment extends Fragment implements StorageActions {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView rec = view.findViewById(R.id.storage_rec);
-        StorageDao dao = DatabaseHelper.getInstance(requireContext()).categoryDao();
-
-        StorageAdapter adapter = new StorageAdapter(requireContext(), this);
+        rec = view.findViewById(R.id.storage_rec);
+        dao = DatabaseHelper.getInstance(requireContext()).categoryDao();
+        adapter = new StorageAdapter(requireContext(), this);
         rec.setAdapter(adapter);
-
-        ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
-        ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
+        callback = new SimpleItemTouchHelperCallback(adapter);
+        touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(rec);
 
         dao.getAllCategories().observe(getViewLifecycleOwner(), categories -> {
@@ -56,7 +67,6 @@ public class StorageFragment extends Fragment implements StorageActions {
         });
 
     }
-
 
     @Override
     public void onClick(Bundle bundle) {

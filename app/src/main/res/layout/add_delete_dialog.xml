@@ -9,13 +9,13 @@
     app:cardBackgroundColor="#A8AFAF">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="200dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/count2"
-        android:layout_width="200dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:counterEnabled="true"
         app:counterMaxLength="8"

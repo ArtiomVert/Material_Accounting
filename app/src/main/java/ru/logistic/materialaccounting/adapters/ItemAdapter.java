@@ -83,7 +83,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
                 .into(holder.image2);
         //holder.image2.setImageBitmap(ImageHelper.loadImageFromStorage(ctx, list.get(position).image));
         holder.vi2.setOnClickListener(v -> {
-            //TODO
             Intent intent = new Intent(ctx, ActivityItem.class);
             intent.putExtra("id", list.get(position).id);
             ctx.startActivity(intent);

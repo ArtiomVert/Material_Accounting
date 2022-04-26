@@ -33,7 +33,6 @@ public class StorageItemsFragment extends Fragment {
         Bundle bundle = getArguments();
         assert bundle != null;
         long id = bundle.getLong("id");
-        Toast.makeText(requireContext(), id+"", Toast.LENGTH_SHORT).show();
         RecyclerView rec = view.findViewById(R.id.item_rec);
         ItemsDao dao = DatabaseHelper.getInstance(requireContext()).itemDao();
 

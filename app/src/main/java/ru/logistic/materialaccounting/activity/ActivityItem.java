@@ -21,7 +21,7 @@ public class ActivityItem extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(this);
 
         ViewPager2 viewPager = findViewById(R.id.view_pager);
-        viewPager.setAdapter(adapter); // устанавливаем адаптер
+        viewPager.setAdapter(adapter);
 
         String[] titles = new String[]{getString(R.string.description), getString(R.string.other)};
 
