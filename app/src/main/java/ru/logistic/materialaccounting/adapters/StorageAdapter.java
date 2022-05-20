@@ -54,7 +54,6 @@ public class StorageAdapter extends RecyclerView.Adapter<StorageAdapter.ViewHold
 
         holder.name1.setText(list.get(position).name);
         Glide.with(ctx).load(ImageHelper.loadImageFromStorage(ctx, list.get(position).image)).into(holder.image1);
-
         //holder.image1.setImageBitmap(ImageHelper.loadImageFromStorage(ctx, list.get(position).image));
         holder.vi1.setOnClickListener(v -> {
             Bundle bundle = new Bundle();

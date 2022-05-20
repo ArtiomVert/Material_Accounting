@@ -75,8 +75,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> im
         int cnt = list.get(position).count;
         String mera = list.get(position).mera;
         holder.count2.setText(cnt + " " + mera);
-
-        //ctx.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("")));
         Glide
                 .with(ctx)
                 .load(ImageHelper.loadImageFromStorage(ctx, list.get(position).image))

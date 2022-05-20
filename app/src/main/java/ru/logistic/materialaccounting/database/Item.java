@@ -4,6 +4,9 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity(tableName = "items")
 public class Item {
     @PrimaryKey(autoGenerate = true)
@@ -36,6 +39,9 @@ public class Item {
     @ColumnInfo
     public int popularityusing = 0;
 
+    @ColumnInfo
+    public String photos;
+
     public Item(long idcategory, String name, String content, int count, String image, String link, String mera) {
         this.name = name;
         this.content = content;
@@ -45,5 +51,6 @@ public class Item {
         this.link = link;
         this.stat = count + "";
         this.mera = mera;
+        this.photos = image;
     }
 }

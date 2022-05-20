@@ -19,21 +19,20 @@ public class Functions {
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static String newName() {
         Calendar c = Calendar.getInstance();
-        String date = "";
-        date += c.get(Calendar.SECOND);
-        date += "_";
-        date += c.get(Calendar.MINUTE);
-        date += "_";
-        date += c.get(Calendar.HOUR_OF_DAY);
-        date += "_";
-        date += c.get(Calendar.DAY_OF_MONTH);
-        date += "_";
-        date += c.get(Calendar.MONTH);
-        date += "_";
-        date += c.get(Calendar.YEAR);
-        date += ".png";
-        String finalDate = date;
-        return finalDate;
+        String name = "";
+        name += c.get(Calendar.SECOND);
+        name += "_";
+        name += c.get(Calendar.MINUTE);
+        name += "_";
+        name += c.get(Calendar.HOUR_OF_DAY);
+        name += "_";
+        name += c.get(Calendar.DAY_OF_MONTH);
+        name += "_";
+        name += c.get(Calendar.MONTH);
+        name += "_";
+        name += c.get(Calendar.YEAR);
+        name += ".png";
+        return name;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)

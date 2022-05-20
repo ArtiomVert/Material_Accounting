@@ -2,11 +2,8 @@ package ru.logistic.materialaccounting.fragments;
 
 
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.PopupMenu;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,13 +13,10 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SimpleItemTouchHelperCallback;
 import ru.logistic.materialaccounting.adapters.StorageAdapter;
-import ru.logistic.materialaccounting.database.Category;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.Item;
 import ru.logistic.materialaccounting.database.ItemsDao;
@@ -37,11 +31,9 @@ public class StorageFragment extends Fragment implements StorageActions {
     private ItemTouchHelper.Callback callback;
     private ItemTouchHelper touchHelper;
 
-
     public StorageFragment() {
         super(R.layout.storage_fragment);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -55,6 +47,7 @@ public class StorageFragment extends Fragment implements StorageActions {
         touchHelper.attachToRecyclerView(rec);
 
         dao.getAllCategories().observe(getViewLifecycleOwner(), categories -> {
+            //Collections.sort(categories,(o1, o2)->o1.name.toLowerCase(Locale.ROOT).compareTo(o2.name.toLowerCase(Locale.ROOT)));
             StorageDiffUtil dif = new StorageDiffUtil(adapter.list, categories);
             DiffUtil.DiffResult d = DiffUtil.calculateDiff(dif);
             adapter.submitList(categories);
@@ -79,7 +72,7 @@ public class StorageFragment extends Fragment implements StorageActions {
         dao.getAllItemsByIdCategory(id).observe(getViewLifecycleOwner(), items -> {
             for (int i = 0; i < items.size(); i++) {
                 Item item = items.get(i);
-                item.idcategory = 1;
+                item.idcategory = 2;
                 new Thread(() -> {
                     dao.update(item);
                 }).start();

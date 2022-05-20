@@ -60,18 +60,14 @@ public class CustomDialog extends DialogFragment {
                             e.printStackTrace();
                         }
                         Bitmap bitmap = BitmapFactory.decodeStream(stream);
-                        int maxSize = Math.max(bitmap.getHeight(), bitmap.getWidth());
-                        if (maxSize < 4500) {
-                            switch (layout) {
-                                case R.layout.activity_add_category:
-                                    ((ImageView) requireView().findViewById(R.id.image)).setImageBitmap(bitmap);
-                                    break;
-                                case R.layout.activity_add_item:
-                                    ((ImageView) requireView().findViewById(R.id.image2)).setImageBitmap(bitmap);
-                                    break;
-                            }
-                        } else {
-                            Toast.makeText(requireContext(), "Слишком большое изображение", Toast.LENGTH_SHORT).show();
+                        bitmap = Bitmap.createScaledBitmap(bitmap, 1000, 1000, false);
+                        switch (layout) {
+                            case R.layout.activity_add_category:
+                                ((ImageView) requireView().findViewById(R.id.image)).setImageBitmap(bitmap);
+                                break;
+                            case R.layout.activity_add_item:
+                                ((ImageView) requireView().findViewById(R.id.image2)).setImageBitmap(bitmap);
+                                break;
                         }
                     }
                 } catch (Exception e) {
@@ -138,7 +134,7 @@ public class CustomDialog extends DialogFragment {
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     resultLauncher.launch(intent);
                 });
-                mera.setOnClickListener(v->{
+                mera.setOnClickListener(v -> {
                     showPopupMenu(v);
                 });
 
@@ -155,17 +151,17 @@ public class CustomDialog extends DialogFragment {
                         i.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
                         i.draw(canvas);
                         //Bitmap bitmap = ((BitmapDrawable) imageitem.getDrawable()).getBitmap();
-                        String aboba = Functions.newName();
+                        String nameimg = Functions.newName();
                         Item it = new Item(idcategory,
                                 name.getText().toString(),
                                 content.getText().toString(),
                                 Integer.parseInt(count.getText().toString()),
-                                aboba,
+                                nameimg,
                                 link.getText().toString(),
                                 mera.getText().toString());
                         History h = new History(0, Functions.Time(), ":Добавление элемента:", it.name);
                         new Thread(() -> {
-                            ImageHelper.saveToInternalStorage(requireContext().getApplicationContext(), b, aboba);
+                            ImageHelper.saveToInternalStorage(requireContext().getApplicationContext(), b, nameimg);
                             dao.insertItem(it);
                             dao2.insertHistory(h);
                         }).start();
@@ -198,13 +194,13 @@ public class CustomDialog extends DialogFragment {
                         Canvas canvas = new Canvas(b);
                         i.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
                         i.draw(canvas);
-                        String aboba = Functions.newName();
+                        String nameimg = Functions.newName();
                         Category nc = new Category(0,
                                 name2.getText().toString(),
-                                aboba);
+                                nameimg);
                         History h = new History(0, Functions.Time(), ":Добавление категории:", nc.name);
                         new Thread(() -> {
-                            ImageHelper.saveToInternalStorage(requireContext().getApplicationContext(), b, aboba);
+                            ImageHelper.saveToInternalStorage(requireContext().getApplicationContext(), b, nameimg);
                             dao3.insertCategory(nc);
                             dao4.insertHistory(h);
                         }).start();
@@ -232,7 +228,8 @@ public class CustomDialog extends DialogFragment {
 
         popupMenu.setOnDismissListener(new PopupMenu.OnDismissListener() {
             @Override
-            public void onDismiss(PopupMenu menu) {}
+            public void onDismiss(PopupMenu menu) {
+            }
         });
         popupMenu.show();
     }

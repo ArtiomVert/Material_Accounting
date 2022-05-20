@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -41,12 +42,14 @@ public class DescriptionFragment extends Fragment {
 
         ItemsDao dao = DatabaseHelper.getInstance(requireContext()).itemDao();
         dao.getItem(id).observe(getViewLifecycleOwner(), item -> {
-            it =item;
+            it = item;
             Glide
                     .with(requireContext())
                     .load(ImageHelper.loadImageFromStorage(requireContext(), item.image))
                     .into((ImageView) view.findViewById(R.id.im));
             RecyclerView rec = view.findViewById(R.id.description_rec);
+            TextView titleite = view.findViewById(R.id.title_item);
+            titleite.setText(item.name);
             String text = item.content;
             rec.setAdapter(new DescriptionAdapter(text.split("\n")));
             pb.setVisibility(View.GONE);
