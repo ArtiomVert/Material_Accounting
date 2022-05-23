@@ -170,6 +170,7 @@ public class CustomDialog extends DialogFragment {
                 });
                 break;
             case R.layout.activity_add_category:
+
                 TextInputLayout textInputLayout2 = view.findViewById(R.id.name);
                 EditText name2 = textInputLayout2.getEditText();
                 Button btn2 = view.findViewById(R.id.btn);
