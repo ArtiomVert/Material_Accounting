@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1022897154242",
+    "project_id": "material-accounting-40b8a",
+    "storage_bucket": "material-accounting-40b8a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022897154242:android:064cea25cb21d42c93735b",
+        "android_client_info": {
+          "package_name": "ru.logistic.materialaccounting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022897154242-3f4v5f7v0kcfvac84ik38jvqtk86skep.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkMwfxB262LmleG_r5tVbND9cyvwwb0ec"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022897154242-3f4v5f7v0kcfvac84ik38jvqtk86skep.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
