@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -77,10 +78,9 @@ public class StorageItemsFragment extends Fragment {
         }
         Button btn = view.findViewById(R.id.add);
         btn.setOnClickListener(v -> {
-            Bundle b = new Bundle();
-            b.putLong("idcategory", id);
-            new CustomDialog(R.layout.activity_add_item, b)
-                    .show(requireActivity().getSupportFragmentManager(), "customTag");
+            Bundle bundle1 = new Bundle();
+            bundle1.putLong("id", id);
+            Navigation.findNavController(requireView()).navigate(R.id.add_item_fragment, bundle1);
 
         });
 

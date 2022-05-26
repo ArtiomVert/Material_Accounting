@@ -20,9 +20,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Введите название объекта"
-                android:inputType="text"
-                tools:ignore="HardcodedText" />
+                android:hint="@string/add_title_item"
+                android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -36,9 +35,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Введите ссылку на магазин"
-                android:inputType="text"
-                tools:ignore="HardcodedText" />
+                android:hint="@string/add_link_on_shop"
+                android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -51,9 +49,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Напишите описание"
-                android:inputType="textMultiLine"
-                tools:ignore="HardcodedText" />
+                android:hint="@string/add_description"
+                android:inputType="textMultiLine" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton

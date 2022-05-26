@@ -7,6 +7,30 @@
     <string name="other">другое</string>
     <string name="description">Описание</string>
     <string name="Other">Другое</string>
+    <string name="all_items">Все элементы</string>
     <string name="Change">Изменить</string>
+
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
+    <string name="exist">Вы уверены, что хотите выйти?</string>
+
     <string name="annotation1">Пусто.\nДобавьте что-нибудь,\nнажав на + снизу.</string>
+
+    <string name="add_title_category">Введите название категории</string>
+    <string name="add_title_item">Введите название объекта</string>
+    <string name="add_link_on_shop">Введите ссылку на магазин</string>
+    <string name="add_count">Введите количество</string>
+    <string name="add_description">Напишите описание</string>
+
+    <string name="calc_count">Количество:</string>
+    <string name="calc_cost">Цена:</string>
+    <string name="calc_weight">Вес:</string>
+    <string name="calc_ypak">Упаковки:</string>
+    <string name="calc_all_count">Общее количество</string>
+    <string name="calc_cost_for_one">Цена за 1 шт/кг/л</string>
+    <string name="calc_all_cost">Общая цена</string>
+    <string name="calc_weight_for_one">Вес 1 шт</string>
+    <string name="calc_all_weight">Общий вес</string>
+    <string name="calc_count_in_one_ypak">Количество в 1 упаковке</string>
+    <string name="calc_count_of_ypak">Количество упаковок</string>
 </resources>

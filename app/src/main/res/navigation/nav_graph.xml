@@ -13,6 +13,16 @@
         tools:layout="@layout/activity_main" />
 
     <fragment
+        android:id="@+id/add_item_fragment"
+        android:name="ru.logistic.materialaccounting.fragments.AddItemFragment"
+        tools:layout="@layout/activity_main"/>
+
+    <fragment
+        android:id="@+id/add_category_fragment"
+        android:name="ru.logistic.materialaccounting.fragments.AddCategoryFragment"
+        tools:layout="@layout/activity_main"/>
+
+    <fragment
         android:id="@+id/storage"
         android:name="ru.logistic.materialaccounting.fragments.StorageFragment"
         android:label="@string/storage"

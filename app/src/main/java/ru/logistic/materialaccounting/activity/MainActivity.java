@@ -38,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
             String nameImage = "category special image";
             Bitmap b = ImageHelper.getBitmapFromXml(this, R.drawable.ic_category_other);
             ImageHelper.saveToInternalStorage(this.getApplicationContext(), b, nameImage);
-            Category other = new Category(0, "Остальное", nameImage);
-            Category all = new Category(0, "Все элементы", nameImage);
+            Category other = new Category(0, getString(R.string.Other), nameImage);
+            Category all = new Category(0, getString(R.string.all_items), nameImage);
             new Thread(() -> {
                 dao.insertCategory(all);
                 dao.insertCategory(other);
@@ -63,10 +63,10 @@ public class MainActivity extends AppCompatActivity {
     private void openQuitDialog() {
         AlertDialog.Builder quitDialog = new AlertDialog.Builder(
                 this);
-        quitDialog.setTitle("Вы уверены, что хотите выйти?");
-        quitDialog.setPositiveButton("Да", (dialog, which) -> finish());
+        quitDialog.setTitle(getString(R.string.exist));
+        quitDialog.setPositiveButton(getString(R.string.yes), (dialog, which) -> finish());
 
-        quitDialog.setNegativeButton("Нет", (dialog, which) -> {
+        quitDialog.setNegativeButton(getString(R.string.no), (dialog, which) -> {
         });
 
         quitDialog.show();

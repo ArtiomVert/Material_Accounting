@@ -9,7 +9,7 @@
         android:id="@+id/text1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Количество:"
+        android:text="@string/calc_count"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,7 +20,7 @@
         android:id="@+id/text2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Цена:"
+        android:text="@string/calc_cost"
         android:textSize="20dp"
         app:layout_constraintTop_toBottomOf="@+id/kol_vo1"
         tools:ignore="MissingConstraints,NotSibling" />
@@ -29,7 +29,7 @@
         android:id="@+id/text3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Вес:"
+        android:text="@string/calc_weight"
         android:textSize="20dp"
         app:layout_constraintTop_toBottomOf="@id/price1"
         tools:ignore="MissingConstraints" />
@@ -39,7 +39,7 @@
         android:id="@+id/text4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Упаковки:"
+        android:text="@string/calc_ypak"
         android:textSize="20dp"
         app:layout_constraintTop_toBottomOf="@id/ves1" />
 
@@ -65,7 +65,7 @@
             android:id="@+id/kol_vo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Общее количество"
+            android:hint="@string/calc_all_count"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,7 +80,7 @@
             android:id="@+id/price_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Цена за 1 шт/кг/л"
+            android:hint="@string/calc_cost_for_one"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -95,7 +95,7 @@
             android:id="@+id/price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Общая цена"
+            android:hint="@string/calc_all_cost"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -110,7 +110,7 @@
             android:id="@+id/ves_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Вес 1 шт"
+            android:hint="@string/calc_weight_for_one"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -125,7 +125,7 @@
             android:id="@+id/ves"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Общий вес"
+            android:hint="@string/calc_all_weight"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -140,7 +140,7 @@
             android:id="@+id/pack_one"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Количество в 1 упаковке"
+            android:hint="@string/calc_count_in_one_ypak"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -155,7 +155,7 @@
             android:id="@+id/pack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Количества упаковок"
+            android:hint="@string/calc_count_of_ypak"
             android:inputType="number" />
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -60,8 +60,7 @@ public class StorageFragment extends Fragment implements StorageActions {
         });
         Button badd = view.findViewById(R.id.add);
         badd.setOnClickListener(v -> {
-            new CustomDialog(R.layout.activity_add_category, new Bundle())
-                    .show(requireActivity().getSupportFragmentManager(), "customTag");
+            Navigation.findNavController(requireView()).navigate(R.id.add_category_fragment);
         });
 
     }
