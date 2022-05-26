@@ -9,12 +9,11 @@
     <string name="Other">Другое</string>
     <string name="all_items">Все элементы</string>
     <string name="Change">Изменить</string>
+    <string name="nothing">Пусто</string>
 
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="exist">Вы уверены, что хотите выйти?</string>
-
-    <string name="annotation1">Пусто.\nДобавьте что-нибудь,\nнажав на + снизу.</string>
 
     <string name="add_title_category">Введите название категории</string>
     <string name="add_title_item">Введите название объекта</string>
@@ -33,4 +32,21 @@
     <string name="calc_all_weight">Общий вес</string>
     <string name="calc_count_in_one_ypak">Количество в 1 упаковке</string>
     <string name="calc_count_of_ypak">Количество упаковок</string>
+
+    <string name="guide_title_question">Обучение.</string>
+    <string name="guide_question">Хотите пройти обучение?</string>
+    <string name="guide1">Панель окон</string>
+    <string name="guide2">С помощью этих кнопок вы можете перемещаться из одного окна в другое. Они идут по порядку: Склад, История, Калькулятор.</string>
+    <string name="guide3">Добавить категорию</string>
+    <string name="guide4">Нажмите, чтобы создать новую категорию</string>
+    <string name="guide5">Изображение</string>
+    <string name="guide6">Нажмите, чтобы выбрать изображение для вашей категории</string>
+    <string name="guide7">Название</string>
+    <string name="guide8">Здесь будет Название вашей категории</string>
+    <string name="example1">Пример категории</string>
+    <string name="guide9">Сохранить</string>
+    <string name="guide10">Нажмите, чтобы сохранить созданную категорию</string>
+    <string name="guide11">Переход к материалам</string>
+    <string name="guide12">Нажмите, чтобы перейти к материалам этой категории</string>
+    <string name="guide"></string>
 </resources>

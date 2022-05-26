@@ -16,7 +16,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SimpleItemTouchHelperCallback;
-import ru.logistic.materialaccounting.adapters.AnnotatiomAdapter;
 import ru.logistic.materialaccounting.adapters.ItemAdapter;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.ItemsDao;
@@ -36,6 +35,7 @@ public class StorageItemsFragment extends Fragment {
         assert bundle != null;
         long id = bundle.getLong("id");
         RecyclerView rec = view.findViewById(R.id.item_rec);
+        TextView textView = view.findViewById(R.id.state);
         ItemsDao dao = DatabaseHelper.getInstance(requireContext()).itemDao();
 
         ItemAdapter adapter = new ItemAdapter(requireContext());
@@ -48,9 +48,10 @@ public class StorageItemsFragment extends Fragment {
         if (id == 1) {
             dao.getAllItems().observe(getViewLifecycleOwner(), items -> {
                 if (items.size() == 0) {
-                    AnnotatiomAdapter ad = new AnnotatiomAdapter(getString(R.string.annotation1));
-                    rec.setAdapter(ad);
+                    textView.setVisibility(View.VISIBLE);
+                    textView.setText(R.string.nothing);
                 } else {
+                    textView.setVisibility(View.GONE);
                     rec.setAdapter(adapter);
                     ItemsDiffUtil dif = new ItemsDiffUtil(adapter.list, items);
                     DiffUtil.DiffResult d = DiffUtil.calculateDiff(dif);
@@ -61,9 +62,10 @@ public class StorageItemsFragment extends Fragment {
         } else {
             dao.getAllItemsByIdCategory(id).observe(getViewLifecycleOwner(), items -> {
                 if (items.size() == 0) {
-                    AnnotatiomAdapter ad = new AnnotatiomAdapter(getString(R.string.annotation1));
-                    rec.setAdapter(ad);
+                    textView.setVisibility(View.VISIBLE);
+                    textView.setText(R.string.nothing);
                 } else {
+                    textView.setVisibility(View.GONE);
                     rec.setAdapter(adapter);
                     ItemsDiffUtil dif = new ItemsDiffUtil(adapter.list, items);
                     DiffUtil.DiffResult d = DiffUtil.calculateDiff(dif);

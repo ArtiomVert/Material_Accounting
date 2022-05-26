@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
@@ -24,6 +25,8 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.io.FileNotFoundException;
@@ -66,14 +69,14 @@ public class AddCategoryFragment extends Fragment {
         super(R.layout.activity_add_category);
     }
 
-
+    Button btn;
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         TextInputLayout textInputLayout2 = view.findViewById(R.id.name);
         EditText name2 = textInputLayout2.getEditText();
-        Button btn2 = view.findViewById(R.id.btn);
+        btn = view.findViewById(R.id.btn);
         StorageDao dao3 = DatabaseHelper.getInstance(requireContext()).categoryDao();
         HistoryDao dao4 = DatabaseHelper.getInstance(requireContext()).historyDao();
 
@@ -86,7 +89,7 @@ public class AddCategoryFragment extends Fragment {
             resultLauncher.launch(intent);
         });
 
-        btn2.setOnClickListener(v -> {
+        btn.setOnClickListener(v -> {
             if (name2.getText().toString().equals("")) {
                 Toast.makeText(requireContext(), "Заполните для продолжения", Toast.LENGTH_SHORT).show();
             } else {
@@ -108,5 +111,113 @@ public class AddCategoryFragment extends Fragment {
                 Navigation.findNavController(requireView()).navigate(R.id.storage);
             }
         });
+
+        String guide = Functions.load(requireContext(), "guide");
+        if (guide.equals("1")) {
+            guide1();
+        }
+    }
+    private void guide1(){
+        TapTargetView.showFor(requireActivity(),
+                TapTarget.forView(requireView().findViewById(R.id.image), getString(R.string.guide5), getString(R.string.guide6))
+                        .outerCircleColor(R.color.teal_700)
+                        .outerCircleAlpha(0.95f)
+                        .targetCircleColor(R.color.white)
+                        .titleTextSize(30)
+                        .titleTextColor(R.color.white)
+                        .descriptionTextSize(20)
+                        .textTypeface(Typeface.SANS_SERIF)
+                        .dimColor(R.color.black)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .transparentTarget(true)
+                        .targetRadius(150),
+                new TapTargetView.Listener() {
+                    @Override
+                    public void onTargetClick(TapTargetView view) {
+                        super.onTargetCancel(view);
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        resultLauncher.launch(intent);
+                        guide2();
+                    }
+
+                    @Override
+                    public void onTargetLongClick(TapTargetView view) {
+                        super.onTargetLongClick(view);
+                        Intent intent = new Intent();
+                        intent.setType("image/*");
+                        intent.setAction(Intent.ACTION_GET_CONTENT);
+                        resultLauncher.launch(intent);
+                        guide2();
+                    }
+                });
+    }
+
+    private void guide2(){
+        TapTargetView.showFor(requireActivity(),
+                TapTarget.forView(requireView().findViewById(R.id.name), getString(R.string.guide7), getString(R.string.guide8))
+                        .outerCircleColor(R.color.teal_700)
+                        .outerCircleAlpha(0.95f)
+                        .targetCircleColor(R.color.white)
+                        .titleTextSize(30)
+                        .titleTextColor(R.color.white)
+                        .descriptionTextSize(20)
+                        .textTypeface(Typeface.SANS_SERIF)
+                        .dimColor(R.color.black)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .transparentTarget(true),
+                new TapTargetView.Listener() {
+                    @Override
+                    public void onTargetClick(TapTargetView view) {
+                        super.onTargetCancel(view);
+                        TextInputLayout textInputLayout = requireView().findViewById(R.id.name);
+                        EditText name = textInputLayout.getEditText();
+                        name.setText(getString(R.string.example1));
+                        guide3();
+                    }
+
+                    @Override
+                    public void onTargetLongClick(TapTargetView view) {
+                        super.onTargetLongClick(view);
+                        TextInputLayout textInputLayout = requireView().findViewById(R.id.name);
+                        EditText name = textInputLayout.getEditText();
+                        name.setText(getString(R.string.example1));
+                        guide3();
+                    }
+                });
+    }
+
+    private void guide3(){
+        TapTargetView.showFor(requireActivity(),
+                TapTarget.forView(btn, getString(R.string.guide9), getString(R.string.guide10))
+                        .outerCircleColor(R.color.teal_700)
+                        .outerCircleAlpha(0.95f)
+                        .targetCircleColor(R.color.white)
+                        .titleTextSize(30)
+                        .titleTextColor(R.color.white)
+                        .descriptionTextSize(20)
+                        .textTypeface(Typeface.SANS_SERIF)
+                        .dimColor(R.color.black)
+                        .drawShadow(true)
+                        .cancelable(false)
+                        .transparentTarget(true),
+                new TapTargetView.Listener() {
+                    @Override
+                    public void onTargetClick(TapTargetView view) {
+                        super.onTargetCancel(view);
+                        Functions.save(requireContext(), "guide", "2");
+                        btn.callOnClick();
+                    }
+
+                    @Override
+                    public void onTargetLongClick(TapTargetView view) {
+                        super.onTargetLongClick(view);
+                        Functions.save(requireContext(), "guide", "2");
+                        btn.callOnClick();
+                    }
+                });
     }
 }
