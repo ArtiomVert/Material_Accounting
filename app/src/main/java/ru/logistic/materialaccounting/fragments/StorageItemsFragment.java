@@ -4,6 +4,7 @@ package ru.logistic.materialaccounting.fragments;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import ru.logistic.materialaccounting.R;
 import ru.logistic.materialaccounting.SimpleItemTouchHelperCallback;
+import ru.logistic.materialaccounting.adapters.AnnotatiomAdapter;
 import ru.logistic.materialaccounting.adapters.ItemAdapter;
 import ru.logistic.materialaccounting.database.DatabaseHelper;
 import ru.logistic.materialaccounting.database.ItemsDao;
@@ -35,6 +37,10 @@ public class StorageItemsFragment extends Fragment {
         RecyclerView rec = view.findViewById(R.id.item_rec);
         ItemsDao dao = DatabaseHelper.getInstance(requireContext()).itemDao();
 
+        DatabaseHelper.getInstance(requireContext()).categoryDao().getCategory(id).observe(getViewLifecycleOwner(), category -> {
+            ((TextView) view.findViewById(R.id.title)).setText(category.name);
+        });
+
         ItemAdapter adapter = new ItemAdapter(requireContext());
         rec.setAdapter(adapter);
 
@@ -44,17 +50,29 @@ public class StorageItemsFragment extends Fragment {
 
         if (id == 1) {
             dao.getAllItems().observe(getViewLifecycleOwner(), items -> {
-                ItemsDiffUtil dif = new ItemsDiffUtil(adapter.list, items);
-                DiffUtil.DiffResult d = DiffUtil.calculateDiff(dif);
-                adapter.submitList(items);
-                d.dispatchUpdatesTo(adapter);
+                if (items.size() == 0) {
+                    AnnotatiomAdapter ad = new AnnotatiomAdapter(getString(R.string.annotation1));
+                    rec.setAdapter(ad);
+                } else {
+                    rec.setAdapter(adapter);
+                    ItemsDiffUtil dif = new ItemsDiffUtil(adapter.list, items);
+                    DiffUtil.DiffResult d = DiffUtil.calculateDiff(dif);
+                    adapter.submitList(items);
+                    d.dispatchUpdatesTo(adapter);
+                }
             });
         } else {
             dao.getAllItemsByIdCategory(id).observe(getViewLifecycleOwner(), items -> {
-                ItemsDiffUtil dif = new ItemsDiffUtil(adapter.list, items);
-                DiffUtil.DiffResult d = DiffUtil.calculateDiff(dif);
-                adapter.submitList(items);
-                d.dispatchUpdatesTo(adapter);
+                if (items.size() == 0) {
+                    AnnotatiomAdapter ad = new AnnotatiomAdapter(getString(R.string.annotation1));
+                    rec.setAdapter(ad);
+                } else {
+                    rec.setAdapter(adapter);
+                    ItemsDiffUtil dif = new ItemsDiffUtil(adapter.list, items);
+                    DiffUtil.DiffResult d = DiffUtil.calculateDiff(dif);
+                    adapter.submitList(items);
+                    d.dispatchUpdatesTo(adapter);
+                }
             });
         }
         Button btn = view.findViewById(R.id.add);

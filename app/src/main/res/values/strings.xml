@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">Material Accounting</string>
-    <string name="storage">Storage</string>
-    <string name="calc">Calculator</string>
-    <string name="storageCategory">Categories</string>
-    <string name="history">History</string>
-    <string name="other">other</string>
-    <string name="description">Description</string>
-    <string name="Other">Other</string>
+    <string name="storage">Склад</string>
+    <string name="calc">Калькулятор</string>
+    <string name="storageCategory">Категории</string>
+    <string name="history">История</string>
+    <string name="other">другое</string>
+    <string name="description">Описание</string>
+    <string name="Other">Другое</string>
     <string name="Change">Изменить</string>
+    <string name="annotation1">Пусто.\nДобавьте что-нибудь,\nнажав на + снизу.</string>
 </resources>
