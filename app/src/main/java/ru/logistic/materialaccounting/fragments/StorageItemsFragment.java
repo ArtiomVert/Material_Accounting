@@ -38,10 +38,6 @@ public class StorageItemsFragment extends Fragment {
         RecyclerView rec = view.findViewById(R.id.item_rec);
         ItemsDao dao = DatabaseHelper.getInstance(requireContext()).itemDao();
 
-        DatabaseHelper.getInstance(requireContext()).categoryDao().getCategory(id).observe(getViewLifecycleOwner(), category -> {
-            ((TextView) view.findViewById(R.id.title)).setText(category.name);
-        });
-
         ItemAdapter adapter = new ItemAdapter(requireContext());
         rec.setAdapter(adapter);
 
